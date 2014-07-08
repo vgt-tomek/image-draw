@@ -1,41 +1,32 @@
 package pl.vgtworld.imagedraw.processing;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 
 import pl.vgtworld.imagedraw.Image;
 import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageProcessing {
 	
-	private static final ImageType DEFAULT_IMAGE_TYPE = ImageType.JPEG;
-	
 	private ImageTypeMapper imageTypeMapper = new ImageTypeMapper();
 	
+	private ImageOpenActions openActions = new ImageOpenActions(imageTypeMapper);
+	
 	public Image open(String path) throws IOException {
-		return open(new File(path));
+		return openActions.open(new File(path));
 	}
 	
 	public Image open(File file) throws IOException {
-		BufferedImage bufferedImage = ImageIO.read(file);
-		ImageType imageType = imageTypeMapper.mapFromExtension(file.getName());
-		if (imageType == null) {
-			imageType = DEFAULT_IMAGE_TYPE;
-		}
-		return new Image(bufferedImage, imageType);
+		return openActions.open(file);
 	}
 	
 	public Image open(InputStream stream) throws IOException {
-		return open(stream, DEFAULT_IMAGE_TYPE);
+		return openActions.open(stream);
 	}
 	
 	public Image open(InputStream stream, ImageType imageType) throws IOException {
-		BufferedImage bufferedImage = ImageIO.read(stream);
-		return new Image(bufferedImage, imageType);
+		return openActions.open(stream, imageType);
 	}
 	
 }
