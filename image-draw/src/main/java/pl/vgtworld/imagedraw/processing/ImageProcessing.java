@@ -1,4 +1,4 @@
-package pl.vgtworld.imagedraw;
+package pl.vgtworld.imagedraw.processing;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,7 +7,9 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-public class ImageDraw {
+import pl.vgtworld.imagedraw.Image;
+
+public class ImageProcessing {
 	
 	public Image open(String path) throws IOException {
 		return open(new File(path));

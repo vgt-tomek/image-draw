@@ -1,4 +1,4 @@
-package pl.vgtworld.imagedraw;
+package pl.vgtworld.imagedraw.processing;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,12 +9,14 @@ import java.io.InputStream;
 
 import org.junit.Test;
 
-public class ImageDrawTest {
+import pl.vgtworld.imagedraw.Image;
+
+public class ImageProcessingTest {
 	
 	@Test
 	public void shouldOpenImageFromStream() throws IOException {
 		InputStream stream = getClass().getResourceAsStream("/image-100-100.jpg");
-		ImageDraw id = new ImageDraw();
+		ImageProcessing id = new ImageProcessing();
 		
 		Image image = id.open(stream);
 		BufferedImage bufferedImage = image.getImage();
@@ -27,7 +29,7 @@ public class ImageDrawTest {
 	@Test
 	public void shouldOpenImageFromPath() throws IOException {
 		String path = getClass().getResource("/image-100-100.jpg").getPath();
-		ImageDraw id = new ImageDraw();
+		ImageProcessing id = new ImageProcessing();
 		
 		Image image = id.open(path);
 		BufferedImage bufferedImage = image.getImage();
@@ -41,7 +43,7 @@ public class ImageDrawTest {
 	public void shouldOpenImageFromFile() throws IOException {
 		String path = getClass().getResource("/image-100-100.jpg").getPath();
 		File file = new File(path);
-		ImageDraw id = new ImageDraw();
+		ImageProcessing id = new ImageProcessing();
 		
 		Image image = id.open(file);
 		BufferedImage bufferedImage = image.getImage();
