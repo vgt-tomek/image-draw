@@ -14,13 +14,19 @@ public class ImageProcessing {
 	
 	private static final ImageType DEFAULT_IMAGE_TYPE = ImageType.JPEG;
 	
+	private ImageTypeMapper imageTypeMapper = new ImageTypeMapper();
+	
 	public Image open(String path) throws IOException {
 		return open(new File(path));
 	}
 	
 	public Image open(File file) throws IOException {
 		BufferedImage bufferedImage = ImageIO.read(file);
-		return new Image(bufferedImage, DEFAULT_IMAGE_TYPE); //TODO Load image type from extension.
+		ImageType imageType = imageTypeMapper.mapFromExtension(file.getName());
+		if (imageType == null) {
+			imageType = DEFAULT_IMAGE_TYPE;
+		}
+		return new Image(bufferedImage, imageType);
 	}
 	
 	public Image open(InputStream stream) throws IOException {
