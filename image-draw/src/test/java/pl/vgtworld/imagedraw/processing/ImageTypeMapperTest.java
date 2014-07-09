@@ -38,4 +38,31 @@ public class ImageTypeMapperTest {
 		assertThat(imageType).isNull();
 	}
 	
+	@Test
+	public void shouldProperlyMapJpegImageTypeToExtension() {
+		ImageTypeMapper mapper = new ImageTypeMapper();
+		
+		String extension = mapper.mapFromImageType(ImageType.JPEG);
+		
+		assertThat(extension).isEqualTo("jpg");
+	}
+	
+	@Test
+	public void shouldProperlyMapBmpImageTypeToExtension() {
+		ImageTypeMapper mapper = new ImageTypeMapper();
+		
+		String extension = mapper.mapFromImageType(ImageType.BMP);
+		
+		assertThat(extension).isEqualTo("bmp");
+	}
+	
+	@Test
+	public void shouldProperlyMapPngImageTypeToExtension() {
+		ImageTypeMapper mapper = new ImageTypeMapper();
+		
+		String extension = mapper.mapFromImageType(ImageType.PNG);
+		
+		assertThat(extension).isEqualTo("png");
+	}
+	
 }
