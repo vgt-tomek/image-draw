@@ -14,9 +14,10 @@ public class ImageProcessingTest {
 	@Test
 	public void shouldOpenImageFromPath() throws IOException {
 		String path = getClass().getResource("/image-100-100.jpg").getPath();
-		ImageProcessing id = new ImageProcessing();
+		ImageProcessing imageProcessing = new ImageProcessing();
 		
-		Image image = id.open(path);
+		imageProcessing.open(path);
+		Image image = imageProcessing.getImage();
 		BufferedImage bufferedImage = image.getImage();
 		
 		assertThat(bufferedImage).isNotNull();

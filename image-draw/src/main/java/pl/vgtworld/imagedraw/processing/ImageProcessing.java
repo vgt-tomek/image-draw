@@ -9,20 +9,26 @@ import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageProcessing {
 	
+	private Image image;
+	
 	private ImageTypeMapper imageTypeMapper = new ImageTypeMapper();
 	
 	private ImageOpenActions openActions = new ImageOpenActions(imageTypeMapper);
 	
-	public Image open(String path) throws IOException {
-		return openActions.open(new File(path));
+	public Image getImage() {
+		return image;
 	}
 	
-	public Image open(File file) throws IOException {
-		return openActions.open(file);
+	public void open(String path) throws IOException {
+		image = openActions.open(new File(path));
 	}
 	
-	public Image open(InputStream stream) throws IOException {
-		return openActions.open(stream);
+	public void open(File file) throws IOException {
+		image = openActions.open(file);
+	}
+	
+	public void open(InputStream stream) throws IOException {
+		image = openActions.open(stream);
 	}
 	
 	public Image open(InputStream stream, ImageType imageType) throws IOException {
