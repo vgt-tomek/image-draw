@@ -3,29 +3,13 @@ package pl.vgtworld.imagedraw.processing;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.junit.Test;
 
 import pl.vgtworld.imagedraw.Image;
-import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageProcessingTest {
-	
-	@Test
-	public void shouldOpenImageFromStream() throws IOException {
-		InputStream stream = getClass().getResourceAsStream("/image-100-100.jpg");
-		ImageProcessing id = new ImageProcessing();
-		
-		Image image = id.open(stream);
-		BufferedImage bufferedImage = image.getImage();
-		
-		assertThat(bufferedImage).isNotNull();
-		assertThat(bufferedImage.getWidth()).isEqualTo(100);
-		assertThat(bufferedImage.getHeight()).isEqualTo(100);
-	}
 	
 	@Test
 	public void shouldOpenImageFromPath() throws IOException {
@@ -38,42 +22,6 @@ public class ImageProcessingTest {
 		assertThat(bufferedImage).isNotNull();
 		assertThat(bufferedImage.getWidth()).isEqualTo(100);
 		assertThat(bufferedImage.getHeight()).isEqualTo(100);
-	}
-	
-	@Test
-	public void shouldOpenImageFromFile() throws IOException {
-		String path = getClass().getResource("/image-100-100.jpg").getPath();
-		File file = new File(path);
-		ImageProcessing id = new ImageProcessing();
-		
-		Image image = id.open(file);
-		BufferedImage bufferedImage = image.getImage();
-		
-		assertThat(bufferedImage).isNotNull();
-		assertThat(bufferedImage.getWidth()).isEqualTo(100);
-		assertThat(bufferedImage.getHeight()).isEqualTo(100);
-	}
-	
-	@Test
-	public void shouldProperlyRecognizeJpegImageType() throws IOException {
-		String path = getClass().getResource("/image-100-100.jpg").getPath();
-		File file = new File(path);
-		ImageProcessing id = new ImageProcessing();
-		
-		Image image = id.open(file);
-		
-		assertThat(image.getImageType()).isEqualTo(ImageType.JPEG);
-	}
-	
-	@Test
-	public void shouldProperlyRecognizeBmpImageType() throws IOException {
-		String path = getClass().getResource("/image-100-100.bmp").getPath();
-		File file = new File(path);
-		ImageProcessing id = new ImageProcessing();
-		
-		Image image = id.open(file);
-		
-		assertThat(image.getImageType()).isEqualTo(ImageType.BMP);
 	}
 	
 }
