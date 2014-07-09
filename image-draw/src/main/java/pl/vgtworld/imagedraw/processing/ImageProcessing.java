@@ -15,6 +15,8 @@ public class ImageProcessing {
 	
 	private ImageOpenActions openActions = new ImageOpenActions(imageTypeMapper);
 	
+	private ImageSaveActions saveActions = new ImageSaveActions(imageTypeMapper);
+	
 	public Image getImage() {
 		return image;
 	}
@@ -33,6 +35,14 @@ public class ImageProcessing {
 	
 	public Image open(InputStream stream, ImageType imageType) throws IOException {
 		return openActions.open(stream, imageType);
+	}
+	
+	public void save(String path) throws IOException {
+		saveActions.save(image, new File(path));
+	}
+	
+	public void save(File file) throws IOException {
+		saveActions.save(image, file);
 	}
 	
 }
