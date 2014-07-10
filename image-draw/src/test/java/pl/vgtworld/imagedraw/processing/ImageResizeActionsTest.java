@@ -164,6 +164,19 @@ public class ImageResizeActionsTest {
 		assertThat(newWidth).isEqualTo(1);
 	}
 	
+	@Test
+	public void shouldNotForceKeepingImageRatioWhenBothDimensionsAreProvided() throws IOException {
+		ImageResizeActions resizeActions = new ImageResizeActions();
+		Image testImage = openHorizontalTestImage();
+		
+		resizeActions.resize(testImage, 8, 21);
+		int newWidth = testImage.getImage().getWidth();
+		int newHeight = testImage.getImage().getHeight();
+		
+		assertThat(newWidth).isEqualTo(8);
+		assertThat(newHeight).isEqualTo(21);
+	}
+	
 	private Image openHorizontalTestImage() throws IOException {
 		BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/image-300-100.jpg"));
 		return new Image(image, ImageType.JPEG);
