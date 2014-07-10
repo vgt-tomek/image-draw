@@ -17,6 +17,8 @@ public class ImageProcessing {
 	
 	private ImageSaveActions saveActions = new ImageSaveActions(imageTypeMapper);
 	
+	private ImageResizeActions resizeActions = new ImageResizeActions();
+	
 	public Image getImage() {
 		return image;
 	}
@@ -43,6 +45,10 @@ public class ImageProcessing {
 	
 	public void save(File file) throws IOException {
 		saveActions.save(image, file);
+	}
+	
+	public void resize(Integer newWidth, Integer newHeight) {
+		resizeActions.resize(image, newWidth, newHeight);
 	}
 	
 }
