@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import pl.vgtworld.imagedraw.Image;
+import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
 
 class ImageSaveActions {
@@ -17,7 +17,7 @@ class ImageSaveActions {
 		this.imageTypeMapper = imageTypeMapper;
 	}
 	
-	public void save(Image image, File file) throws IOException {
+	public void save(ImageDrawEntity image, File file) throws IOException {
 		BufferedImage imageData = image.getImage();
 		ImageType imageType = image.getImageType();
 		if (imageData == null) {

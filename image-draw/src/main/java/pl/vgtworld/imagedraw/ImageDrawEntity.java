@@ -2,16 +2,16 @@ package pl.vgtworld.imagedraw;
 
 import java.awt.image.BufferedImage;
 
-public class Image {
+public class ImageDrawEntity {
 	
 	private BufferedImage image;
 	
 	private ImageType imageType;
 	
-	public Image() {
+	public ImageDrawEntity() {
 	}
 	
-	public Image(BufferedImage image, ImageType imageType) {
+	public ImageDrawEntity(BufferedImage image, ImageType imageType) {
 		this.image = image;
 		this.imageType = imageType;
 	}

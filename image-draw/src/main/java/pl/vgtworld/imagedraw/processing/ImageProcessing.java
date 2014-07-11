@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import pl.vgtworld.imagedraw.Image;
+import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageProcessing {
 	
-	private Image image;
+	private ImageDrawEntity image;
 	
 	private ImageTypeMapper imageTypeMapper = new ImageTypeMapper();
 	
@@ -19,7 +19,7 @@ public class ImageProcessing {
 	
 	private ImageResizeActions resizeActions = new ImageResizeActions();
 	
-	public Image getImage() {
+	public ImageDrawEntity getImage() {
 		return image;
 	}
 	
@@ -35,7 +35,7 @@ public class ImageProcessing {
 		image = openActions.open(stream);
 	}
 	
-	public Image open(InputStream stream, ImageType imageType) throws IOException {
+	public ImageDrawEntity open(InputStream stream, ImageType imageType) throws IOException {
 		return openActions.open(stream, imageType);
 	}
 	

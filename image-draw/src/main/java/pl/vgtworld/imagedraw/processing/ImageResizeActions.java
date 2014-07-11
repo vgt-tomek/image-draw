@@ -2,11 +2,11 @@ package pl.vgtworld.imagedraw.processing;
 
 import java.awt.image.BufferedImage;
 
-import pl.vgtworld.imagedraw.Image;
+import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageResizeActions {
 	
-	public void resize(Image image, Integer newWidth, Integer newHeight) {
+	public void resize(ImageDrawEntity image, Integer newWidth, Integer newHeight) {
 		dimensionValidation(newWidth, newHeight);
 		if (newWidth == null) {
 			newWidth = calculateNewWidth(image, newHeight);
@@ -21,11 +21,11 @@ class ImageResizeActions {
 		image.setImage(resizedImageData);
 	}
 
-	private int calculateNewWidth(Image image, int newHeight) {
+	private int calculateNewWidth(ImageDrawEntity image, int newHeight) {
 		return calculateNewEdgeLength(image.getImage().getWidth(), image.getImage().getHeight(), newHeight);
 	}
 	
-	private int calculateNewHeight(Image image, int newWidth) {
+	private int calculateNewHeight(ImageDrawEntity image, int newWidth) {
 		return calculateNewEdgeLength(image.getImage().getHeight(), image.getImage().getWidth(), newWidth);
 	}
 

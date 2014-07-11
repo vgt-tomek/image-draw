@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
-import pl.vgtworld.imagedraw.Image;
+import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageResizeActionsTest {
@@ -17,7 +17,7 @@ public class ImageResizeActionsTest {
 	@Test(expected = IllegalStateException.class)
 	public void shouldNotAllowNullAsBothDimensions() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, null, null);
 	}
@@ -25,7 +25,7 @@ public class ImageResizeActionsTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotAllowZeroWidth() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, 0, null);
 	}
@@ -33,7 +33,7 @@ public class ImageResizeActionsTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotAllowNegativeWidth() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, -10, null);
 	}
@@ -41,7 +41,7 @@ public class ImageResizeActionsTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotAllowZeroHeight() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, null, 0);
 	}
@@ -49,7 +49,7 @@ public class ImageResizeActionsTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotAllowNegativeHeight() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, null, -10);
 	}
@@ -57,7 +57,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldCalculateHeightWhenScalingDown() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, 60, null);
 		int newHeight = testImage.getImage().getHeight();
@@ -68,7 +68,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldCalculateHeightWhenScalingUp() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, 600, null);
 		int newHeight = testImage.getImage().getHeight();
@@ -79,7 +79,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldRoundDownHeightFraction() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, 298, null);
 		int newHeight = testImage.getImage().getHeight();
@@ -90,7 +90,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldRoundUpHeightFraction() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, 299, null);
 		int newHeight = testImage.getImage().getHeight();
@@ -101,7 +101,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldFallbackToOneWhenCalculatedRoundedHeightIsZero() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, 1, null);
 		int newHeight = testImage.getImage().getHeight();
@@ -112,7 +112,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldCalculateWidthWhenScalingDown() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openVerticalTestImage();
+		ImageDrawEntity testImage = openVerticalTestImage();
 		
 		resizeActions.resize(testImage, null, 60);
 		int newWidth = testImage.getImage().getWidth();
@@ -123,7 +123,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldCalculateWidthWhenScalingUp() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openVerticalTestImage();
+		ImageDrawEntity testImage = openVerticalTestImage();
 		
 		resizeActions.resize(testImage, null, 600);
 		int newWidth = testImage.getImage().getWidth();
@@ -134,7 +134,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldRoundDownWidthFraction() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openVerticalTestImage();
+		ImageDrawEntity testImage = openVerticalTestImage();
 		
 		resizeActions.resize(testImage, null, 298);
 		int newWidth = testImage.getImage().getWidth();
@@ -145,7 +145,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldRoundUpWidthFraction() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openVerticalTestImage();
+		ImageDrawEntity testImage = openVerticalTestImage();
 		
 		resizeActions.resize(testImage, null, 299);
 		int newWidth = testImage.getImage().getWidth();
@@ -156,7 +156,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldFallbackToOneWhenCalculatedRoundedWidthIsZero() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openVerticalTestImage();
+		ImageDrawEntity testImage = openVerticalTestImage();
 		
 		resizeActions.resize(testImage, null, 1);
 		int newWidth = testImage.getImage().getWidth();
@@ -167,7 +167,7 @@ public class ImageResizeActionsTest {
 	@Test
 	public void shouldNotForceKeepingImageRatioWhenBothDimensionsAreProvided() throws IOException {
 		ImageResizeActions resizeActions = new ImageResizeActions();
-		Image testImage = openHorizontalTestImage();
+		ImageDrawEntity testImage = openHorizontalTestImage();
 		
 		resizeActions.resize(testImage, 8, 21);
 		int newWidth = testImage.getImage().getWidth();
@@ -177,14 +177,14 @@ public class ImageResizeActionsTest {
 		assertThat(newHeight).isEqualTo(21);
 	}
 	
-	private Image openHorizontalTestImage() throws IOException {
+	private ImageDrawEntity openHorizontalTestImage() throws IOException {
 		BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/image-300-100.jpg"));
-		return new Image(image, ImageType.JPEG);
+		return new ImageDrawEntity(image, ImageType.JPEG);
 	}
 	
-	private Image openVerticalTestImage() throws IOException {
+	private ImageDrawEntity openVerticalTestImage() throws IOException {
 		BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/image-100-300.jpg"));
-		return new Image(image, ImageType.JPEG);
+		return new ImageDrawEntity(image, ImageType.JPEG);
 	}
 	
 }
