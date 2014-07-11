@@ -1,12 +1,13 @@
 package pl.vgtworld.imagedraw.processing;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import pl.vgtworld.imagedraw.Image;
+import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageResizeActions {
 	
-	public void resize(Image image, Integer newWidth, Integer newHeight) {
+	public void resize(ImageDrawEntity image, Integer newWidth, Integer newHeight) {
 		dimensionValidation(newWidth, newHeight);
 		if (newWidth == null) {
 			newWidth = calculateNewWidth(image, newHeight);
@@ -15,17 +16,17 @@ class ImageResizeActions {
 			newHeight = calculateNewHeight(image, newWidth);
 		}
 		BufferedImage currentImageData = image.getImage();
-		java.awt.Image scaledInstance = currentImageData.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
+		Image scaledInstance = currentImageData.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 		BufferedImage resizedImageData = new BufferedImage(newWidth, newHeight, image.getImage().getType());
 		resizedImageData.getGraphics().drawImage(scaledInstance, 0, 0, null);
 		image.setImage(resizedImageData);
 	}
 
-	private int calculateNewWidth(Image image, int newHeight) {
+	private int calculateNewWidth(ImageDrawEntity image, int newHeight) {
 		return calculateNewEdgeLength(image.getImage().getWidth(), image.getImage().getHeight(), newHeight);
 	}
 	
-	private int calculateNewHeight(Image image, int newWidth) {
+	private int calculateNewHeight(ImageDrawEntity image, int newWidth) {
 		return calculateNewEdgeLength(image.getImage().getHeight(), image.getImage().getWidth(), newWidth);
 	}
 

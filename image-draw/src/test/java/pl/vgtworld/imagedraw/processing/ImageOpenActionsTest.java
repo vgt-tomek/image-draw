@@ -9,7 +9,7 @@ import java.io.InputStream;
 
 import org.junit.Test;
 
-import pl.vgtworld.imagedraw.Image;
+import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageOpenActionsTest {
@@ -21,7 +21,7 @@ public class ImageOpenActionsTest {
 		InputStream stream = getClass().getResourceAsStream("/image-100-100.jpg");
 		ImageOpenActions imageOpenActions = new ImageOpenActions(mapper);
 		
-		Image image = imageOpenActions.open(stream);
+		ImageDrawEntity image = imageOpenActions.open(stream);
 		BufferedImage bufferedImage = image.getImage();
 		
 		assertThat(bufferedImage).isNotNull();
@@ -35,7 +35,7 @@ public class ImageOpenActionsTest {
 		File file = new File(path);
 		ImageOpenActions imageOpenActions = new ImageOpenActions(mapper);
 		
-		Image image = imageOpenActions.open(file);
+		ImageDrawEntity image = imageOpenActions.open(file);
 		BufferedImage bufferedImage = image.getImage();
 		
 		assertThat(bufferedImage).isNotNull();
@@ -49,7 +49,7 @@ public class ImageOpenActionsTest {
 		File file = new File(path);
 		ImageOpenActions imageOpenActions = new ImageOpenActions(mapper);
 		
-		Image image = imageOpenActions.open(file);
+		ImageDrawEntity image = imageOpenActions.open(file);
 		
 		assertThat(image.getImageType()).isEqualTo(ImageType.JPEG);
 	}
@@ -60,7 +60,7 @@ public class ImageOpenActionsTest {
 		File file = new File(path);
 		ImageOpenActions imageOpenActions = new ImageOpenActions(mapper);
 		
-		Image image = imageOpenActions.open(file);
+		ImageDrawEntity image = imageOpenActions.open(file);
 		
 		assertThat(image.getImageType()).isEqualTo(ImageType.BMP);
 	}

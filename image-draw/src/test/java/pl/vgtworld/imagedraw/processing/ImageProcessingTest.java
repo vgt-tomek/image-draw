@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import pl.vgtworld.imagedraw.Image;
+import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 public class ImageProcessingTest {
 	
@@ -17,7 +17,7 @@ public class ImageProcessingTest {
 		ImageProcessing imageProcessing = new ImageProcessing();
 		
 		imageProcessing.open(path);
-		Image image = imageProcessing.getImage();
+		ImageDrawEntity image = imageProcessing.getImage();
 		BufferedImage bufferedImage = image.getImage();
 		
 		assertThat(bufferedImage).isNotNull();
