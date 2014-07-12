@@ -1,5 +1,6 @@
 package pl.vgtworld.imagedraw.processing;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
@@ -9,7 +10,7 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageRotationActions {
 	
-	public void rotate(ImageDrawEntity image, int rotation) {
+	public void rotate(ImageDrawEntity image, int rotation, Color backgroundColor) {
 		BufferedImage bufferedImage = image.getImage();
 		int width = bufferedImage.getWidth();
 		int height = bufferedImage.getHeight();
@@ -21,6 +22,8 @@ class ImageRotationActions {
 		
 		BufferedImage rotatedImage = new BufferedImage(bounds.width, bounds.height, bufferedImage.getType());
 		Graphics2D g = rotatedImage.createGraphics();
+		g.setColor(backgroundColor);
+		g.fillRect(0, 0, bounds.width, bounds.height);
 		g.drawImage(bufferedImage, transform, null);
 		g.dispose();
 		image.setImage(rotatedImage);

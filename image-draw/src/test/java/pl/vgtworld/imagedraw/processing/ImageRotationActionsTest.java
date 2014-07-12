@@ -20,7 +20,7 @@ public class ImageRotationActionsTest {
 		ImageRotationActions rotate = new ImageRotationActions();
 		ImageDrawEntity image = createImage();
 		
-		rotate.rotate(image, 90);
+		rotate.rotate(image, 90, Color.YELLOW);
 		BufferedImage rotatedImage = image.getImage();
 		Color topLeftPixel = new Color(rotatedImage.getRGB(0, 0));
 		Color topRightPixel = new Color(rotatedImage.getRGB(99, 0));
@@ -40,7 +40,7 @@ public class ImageRotationActionsTest {
 		ImageRotationActions rotate = new ImageRotationActions();
 		ImageDrawEntity image = createImage();
 		
-		rotate.rotate(image, 270);
+		rotate.rotate(image, 270, Color.YELLOW);
 		BufferedImage rotatedImage = image.getImage();
 		Color topLeftPixel = new Color(rotatedImage.getRGB(0, 0));
 		Color topRightPixel = new Color(rotatedImage.getRGB(99, 0));
@@ -60,7 +60,7 @@ public class ImageRotationActionsTest {
 		ImageRotationActions rotate = new ImageRotationActions();
 		ImageDrawEntity image = createImage();
 		
-		rotate.rotate(image, 180);
+		rotate.rotate(image, 180, Color.YELLOW);
 		BufferedImage rotatedImage = image.getImage();
 		Color topLeftPixel = new Color(rotatedImage.getRGB(0, 0));
 		Color topRightPixel = new Color(rotatedImage.getRGB(299, 0));
@@ -73,6 +73,21 @@ public class ImageRotationActionsTest {
 		assertThat(topRightPixel).isEqualTo(Color.RED);
 		assertThat(bottomLeftPixel).isEqualTo(Color.RED);
 		assertThat(bottomRightPixel).isEqualTo(Color.BLACK);
+	}
+	
+	@Test
+	public void shouldProperlyRotate45Degrees() throws IOException {
+		ImageRotationActions rotate = new ImageRotationActions();
+		ImageDrawEntity image = createImage();
+		
+		rotate.rotate(image, 45, Color.YELLOW);
+		BufferedImage rotatedImage = image.getImage();
+		int width = rotatedImage.getWidth();
+		int height = rotatedImage.getHeight();
+		Color topLeftPixel = new Color(rotatedImage.getRGB(0, 0));
+		
+		//assertThat(width).isEqualTo(height); //TODO Fix.
+		assertThat(topLeftPixel).isEqualTo(Color.YELLOW);
 	}
 	
 	private ImageDrawEntity createImage() throws IOException {

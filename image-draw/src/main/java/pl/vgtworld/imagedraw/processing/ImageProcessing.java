@@ -1,5 +1,6 @@
 package pl.vgtworld.imagedraw.processing;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,7 +61,11 @@ public class ImageProcessing {
 	}
 	
 	public void rotate(Rotation rotation) {
-		rotationActions.rotate(image, rotation.getDegrees());
+		rotationActions.rotate(image, rotation.getDegrees(), Color.BLACK);
+	}
+	
+	public void rotate(int degrees, Color backgroundColor) {
+		rotationActions.rotate(image, degrees, backgroundColor);
 	}
 	
 }
