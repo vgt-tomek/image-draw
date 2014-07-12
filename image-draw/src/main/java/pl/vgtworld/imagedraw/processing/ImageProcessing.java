@@ -19,6 +19,8 @@ public class ImageProcessing {
 	
 	private ImageResizeActions resizeActions = new ImageResizeActions();
 	
+	private ImageCropActions cropActions = new ImageCropActions();
+	
 	public ImageDrawEntity getImage() {
 		return image;
 	}
@@ -49,6 +51,10 @@ public class ImageProcessing {
 	
 	public void resize(Integer newWidth, Integer newHeight) {
 		resizeActions.resize(image, newWidth, newHeight);
+	}
+	
+	public void crop(int x, int y, int width, int height) {
+		cropActions.crop(image, x, y, width, height);
 	}
 	
 }
