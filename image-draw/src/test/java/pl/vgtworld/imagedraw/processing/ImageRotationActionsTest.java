@@ -86,7 +86,7 @@ public class ImageRotationActionsTest {
 		int height = rotatedImage.getHeight();
 		Color topLeftPixel = new Color(rotatedImage.getRGB(0, 0));
 		
-		//assertThat(width).isEqualTo(height); //TODO Fix.
+		assertThat(width).isEqualTo(height);
 		assertThat(topLeftPixel).isEqualTo(Color.YELLOW);
 	}
 	
