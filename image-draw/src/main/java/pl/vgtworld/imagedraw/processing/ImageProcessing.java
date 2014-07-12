@@ -21,6 +21,8 @@ public class ImageProcessing {
 	
 	private ImageCropActions cropActions = new ImageCropActions();
 	
+	private ImageRotationActions rotationActions = new ImageRotationActions();
+	
 	public ImageDrawEntity getImage() {
 		return image;
 	}
@@ -55,6 +57,10 @@ public class ImageProcessing {
 	
 	public void crop(int x, int y, int width, int height) {
 		cropActions.crop(image, x, y, width, height);
+	}
+	
+	public void rotate(Rotation rotation) {
+		rotationActions.rotate(image, rotation.getDegrees());
 	}
 	
 }
