@@ -1,5 +1,6 @@
 package pl.vgtworld.imagedraw.processing;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +21,8 @@ public class ImageProcessing {
 	private ImageResizeActions resizeActions = new ImageResizeActions();
 	
 	private ImageCropActions cropActions = new ImageCropActions();
+	
+	private ImageRotationActions rotationActions = new ImageRotationActions();
 	
 	public ImageDrawEntity getImage() {
 		return image;
@@ -55,6 +58,14 @@ public class ImageProcessing {
 	
 	public void crop(int x, int y, int width, int height) {
 		cropActions.crop(image, x, y, width, height);
+	}
+	
+	public void rotate(Rotation rotation) {
+		rotationActions.rotate(image, rotation.getDegrees(), Color.BLACK);
+	}
+	
+	public void rotate(int degrees, Color backgroundColor) {
+		rotationActions.rotate(image, degrees, backgroundColor);
 	}
 	
 }
