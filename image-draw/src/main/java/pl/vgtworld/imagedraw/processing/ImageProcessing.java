@@ -24,6 +24,8 @@ public class ImageProcessing {
 	
 	private ImageRotationActions rotationActions = new ImageRotationActions();
 	
+	private ImageThumbnailScaleActions thumbnailScaleActions = new ImageThumbnailScaleActions(resizeActions);
+	
 	public ImageDrawEntity getImage() {
 		return image;
 	}
@@ -66,6 +68,14 @@ public class ImageProcessing {
 	
 	public void rotate(int degrees, Color backgroundColor) {
 		rotationActions.rotate(image, degrees, backgroundColor);
+	}
+	
+	public void thumbnailScale(int width, int height) {
+		thumbnailScaleActions.thumbnail(image, width, height, null);
+	}
+	
+	public void thumbnailScale(int width, int height, Color backgroundColor) {
+		thumbnailScaleActions.thumbnail(image, width, height, backgroundColor);
 	}
 	
 }
