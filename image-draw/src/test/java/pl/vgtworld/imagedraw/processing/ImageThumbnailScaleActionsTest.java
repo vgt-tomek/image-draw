@@ -15,9 +15,10 @@ import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageThumbnailScaleActionsTest {
 	
+	private ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions(new ImageResizeActions());
+	
 	@Test
 	public void shouldFitThumbnailHorizontally() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createHDImage();
 		
 		thumbnailActions.thumbnail(image, 100, 100, null);
@@ -26,12 +27,11 @@ public class ImageThumbnailScaleActionsTest {
 		int height = thumbnail.getHeight();
 		
 		assertThat(width).isEqualTo(100);
-		assertThat(height).isEqualTo(55);
+		assertThat(height).isEqualTo(56);
 	}
 	
 	@Test
 	public void shouldFitThumbnailVertically() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createHDImage();
 		
 		thumbnailActions.thumbnail(image, 100, 50, null);
@@ -45,7 +45,6 @@ public class ImageThumbnailScaleActionsTest {
 	
 	@Test
 	public void shouldFillHorizontalBarsWithBackgroundColor() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createHDImage();
 		
 		thumbnailActions.thumbnail(image, 100, 100, Color.YELLOW);
@@ -63,7 +62,6 @@ public class ImageThumbnailScaleActionsTest {
 	
 	@Test
 	public void shouldFillVerticalBarsWithBackgroundColor() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createHDImage();
 		
 		thumbnailActions.thumbnail(image, 100, 50, Color.YELLOW);
@@ -81,7 +79,6 @@ public class ImageThumbnailScaleActionsTest {
 	
 	@Test
 	public void shouldNotScaleUpSmallImage() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createSmallImage();
 		
 		thumbnailActions.thumbnail(image, 200, 200, null);
@@ -95,7 +92,6 @@ public class ImageThumbnailScaleActionsTest {
 	
 	@Test
 	public void shouldPlaceSmallImageInThumbnailCenter() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createSmallImage();
 		
 		thumbnailActions.thumbnail(image, 200, 200, Color.YELLOW);
@@ -117,7 +113,6 @@ public class ImageThumbnailScaleActionsTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotAcceptTooSmallWidth() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createSmallImage();
 		
 		thumbnailActions.thumbnail(image, 0, 100, null);
@@ -125,7 +120,6 @@ public class ImageThumbnailScaleActionsTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotAcceptTooSmallHeight() throws IOException {
-		ImageThumbnailScaleActions thumbnailActions = new ImageThumbnailScaleActions();
 		ImageDrawEntity image = createSmallImage();
 		
 		thumbnailActions.thumbnail(image, 100, 0, null);
