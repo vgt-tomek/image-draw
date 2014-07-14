@@ -26,6 +26,8 @@ public class ImageProcessing {
 	
 	private ImageThumbnailScaleActions thumbnailScaleActions = new ImageThumbnailScaleActions(resizeActions);
 	
+	private ImageThumbnailCropActions thumbnailCropActions = new ImageThumbnailCropActions(resizeActions, cropActions);
+	
 	public ImageDrawEntity getImage() {
 		return image;
 	}
@@ -76,6 +78,10 @@ public class ImageProcessing {
 	
 	public void thumbnailScale(int width, int height, Color backgroundColor) {
 		thumbnailScaleActions.thumbnail(image, width, height, backgroundColor);
+	}
+	
+	public void thumbnailCrop(int width, int height) {
+		thumbnailCropActions.thumbnail(image, width, height);
 	}
 	
 }
