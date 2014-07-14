@@ -14,7 +14,10 @@ import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageThumbnailCropActionsTest {
 	
-	private ImageThumbnailCropActions thumbnailCrop = new ImageThumbnailCropActions();
+	private ImageThumbnailCropActions thumbnailCrop = new ImageThumbnailCropActions(
+			new ImageResizeActions(),
+			new ImageCropActions()
+			);
 	
 	@Test
 	public void shouldProperlyCropHorizontalThumbnail() throws IOException {
