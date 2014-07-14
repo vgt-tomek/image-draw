@@ -81,6 +81,20 @@ public class ImageThumbnailCropActionsTest {
 		assertThat(height).isEqualTo(150);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldNotAcceptInvalidWidth() throws IOException {
+		ImageDrawEntity image = createSmallImage();
+		
+		thumbnailCrop.thumbnail(image, 0, 150);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldNotAcceptInvalidHeight() throws IOException {
+		ImageDrawEntity image = createSmallImage();
+		
+		thumbnailCrop.thumbnail(image, 150, 0);
+	}
+	
 	private ImageDrawEntity createHDImage() throws IOException {
 		BufferedImage imageData = ImageIO.read(getClass().getResourceAsStream("/image-1920-1080.jpg"));
 		return new ImageDrawEntity(imageData, ImageType.PNG);
