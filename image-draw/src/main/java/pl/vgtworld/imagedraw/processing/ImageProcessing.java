@@ -61,10 +61,22 @@ public class ImageProcessing {
 		image = openActions.open(stream);
 	}
 	
+	/**
+	 * Saves currently processed image to specified path.
+	 * 
+	 * @param path A path where image is saved.
+	 * @throws IOException If an error occurs during writing.
+	 */
 	public void save(String path) throws IOException {
 		saveActions.save(image, new File(path));
 	}
 	
+	/**
+	 * Saves currently processed image to specified file.
+	 * 
+	 * @param file A file where image is saved.
+	 * @throws IOException If an error occurs during writing.
+	 */
 	public void save(File file) throws IOException {
 		saveActions.save(image, file);
 	}
