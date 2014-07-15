@@ -81,6 +81,26 @@ public class ImageProcessing {
 		saveActions.save(image, file);
 	}
 	
+	/**
+	 * Resizes image to specified width and height.
+	 * 
+	 * <p>
+	 * Both width and height cannot be equal or lower that zero.
+	 * 
+	 * <p>
+	 * At least one of two parameters must be provided.
+	 * 
+	 * <p>
+	 * If one of parameter's value is null, it's calculated automatically,
+	 * therefore resized image has the same aspect ratio.
+	 * 
+	 * <p>
+	 * If both parameters are provided, image is resized to exact
+	 * dimensions, even if it will change image aspect ratio.
+	 * 
+	 * @param newWidth Image width after resizing.
+	 * @param newHeight Image height after resizing.
+	 */
 	public void resize(Integer newWidth, Integer newHeight) {
 		resizeActions.resize(image, newWidth, newHeight);
 	}
