@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import pl.vgtworld.imagedraw.ImageDrawEntity;
-import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageProcessing {
 	
@@ -32,20 +31,34 @@ public class ImageProcessing {
 		return image;
 	}
 	
+	/**
+	 * Opens image file from specified path for further processing.
+	 * 
+	 * @param path A path to read from.
+	 * @throws IOException If an error occurs during reading.
+	 */
 	public void open(String path) throws IOException {
 		image = openActions.open(new File(path));
 	}
 	
+	/**
+	 * Opens image file from specified file for further processing.
+	 * 
+	 * @param file A file to read from.
+	 * @throws IOException If an error occurs during reading.
+	 */
 	public void open(File file) throws IOException {
 		image = openActions.open(file);
 	}
 	
+	/**
+	 * Opens image file from specified stream for further processing.
+	 * 
+	 * @param stream A stream to read from.
+	 * @throws IOException If an errors occurs during reading.
+	 */
 	public void open(InputStream stream) throws IOException {
 		image = openActions.open(stream);
-	}
-	
-	public ImageDrawEntity open(InputStream stream, ImageType imageType) throws IOException {
-		return openActions.open(stream, imageType);
 	}
 	
 	public void save(String path) throws IOException {
