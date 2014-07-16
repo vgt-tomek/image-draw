@@ -105,6 +105,14 @@ public class ImageProcessing {
 		resizeActions.resize(image, newWidth, newHeight);
 	}
 	
+	/**
+	 * Cropping an area from image defined by specified rectangular region.
+	 * 
+	 * @param x X ccordinate of the upper-left corner of the specified region.
+	 * @param y Y coordinate of the upper-left corner of the specified region.
+	 * @param width Width of the specified region.
+	 * @param height Height of the specified region.
+	 */
 	public void crop(int x, int y, int width, int height) {
 		cropActions.crop(image, x, y, width, height);
 	}
