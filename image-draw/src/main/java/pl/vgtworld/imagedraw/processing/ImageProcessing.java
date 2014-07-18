@@ -117,10 +117,27 @@ public class ImageProcessing {
 		cropActions.crop(image, x, y, width, height);
 	}
 	
+	/**
+	 * Rotates image by multiplicity of 90 degrees.
+	 * 
+	 * <p>
+	 * Rotation parameter allows to choose one of three rotation types:
+	 * <li>90 degrees clockwise
+	 * <li>90 degrees counterclockwise
+	 * <li>180 degrees
+	 * 
+	 * @param rotation Rotation type.
+	 */
 	public void rotate(Rotation rotation) {
 		rotationActions.rotate(image, rotation.getDegrees(), Color.BLACK);
 	}
 	
+	/**
+	 * Rotates image by custom angle.
+	 * 
+	 * @param degrees Amount of degrees to rotate clockwise.
+	 * @param backgroundColor Color, that should be used to fill area around rotated image.
+	 */
 	public void rotate(int degrees, Color backgroundColor) {
 		rotationActions.rotate(image, degrees, backgroundColor);
 	}
