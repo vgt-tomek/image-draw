@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import pl.vgtworld.imagedraw.ImageDrawEntity;
+import pl.vgtworld.imagedraw.ImageType;
 
 public class ImageProcessing {
 	
@@ -79,6 +80,42 @@ public class ImageProcessing {
 	 */
 	public void save(File file) throws IOException {
 		saveActions.save(image, file);
+	}
+	
+	/**
+	 * Saves currently processed image to specified path.
+	 * 
+	 * <p>
+	 * Image type is only used during save process.
+	 * After image is saved, its type is reverted back to what it was before.
+	 * 
+	 * @param path A path where image is saved.
+	 * @param imageType Image format of output file.
+	 * @throws IOException If an error occurs during writing.
+	 */
+	public void save(String path, ImageType imageType) throws IOException {
+		ImageType currentImageType = image.getImageType();
+		image.setImageType(imageType);
+		saveActions.save(image, new File(path));
+		image.setImageType(currentImageType);
+	}
+	
+	/**
+	 * Saves currently processed image to specified file.
+	 * 
+	 * <p>
+	 * Image type is only used during save process.
+	 * After image is saved, its type is reverted back to what it was before.
+	 * 
+	 * @param file A file where image is saved.
+	 * @param imageType Image format of output file.
+	 * @throws IOException If an error occurs during writing.
+	 */
+	public void save(File file, ImageType imageType) throws IOException {
+		ImageType currentImageType = image.getImageType();
+		image.setImageType(imageType);
+		saveActions.save(image, file);
+		image.setImageType(currentImageType);
 	}
 	
 	/**
