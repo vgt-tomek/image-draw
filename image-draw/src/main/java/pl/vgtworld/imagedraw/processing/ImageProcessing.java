@@ -142,14 +142,72 @@ public class ImageProcessing {
 		rotationActions.rotate(image, degrees, backgroundColor);
 	}
 	
+	/**
+	 * Creates image thumbnail.
+	 * 
+	 * <p>
+	 * If image is bigger, than defined width and height, it will be scaled down to fit defined size.
+	 *
+	 * <p>
+	 * If image is smaller, than defined width and height, no action is taken.
+	 * 
+	 * <p>
+	 * Scaled thumbnail have the same image aspect ratio as original image, therefore if original image has
+	 * different aspect ratio, than thumbnail it will not use all available width or height.
+	 * If it is important to create thumbnail with exact defined width and height, use
+	 * {@link #thumbnailScale(int, int, Color) thumbnailScale(width, height, backgroundColor)}
+	 * or {@link #thumbnailCrop(int, int) thumbnailCrop(width, height)}.
+	 * 
+	 * @param width Maximum allowed thumbnail width.
+	 * @param height Maximum allowed thumbnail height.
+	 */
 	public void thumbnailScale(int width, int height) {
 		thumbnailScaleActions.thumbnail(image, width, height, null);
 	}
 	
+	/**
+	 * Creates image thumbnail.
+	 * 
+	 * <p>
+	 * if image is bigger, than defined width and height, it will be scaled down to fit defined size.
+	 * 
+	 * <p>
+	 * If image is smaller, than defined width and height, it will be centered on thumbnail
+	 * and surrounding area will be filled with background color.
+	 * 
+	 * <p>
+	 * Scaled thumbnail have the same image aspect ratio as original image, therefore if original image has
+	 * different aspect ratio, then thumbnail will have horizontal or vertical bars filled with background color,
+	 * in order for generated image to have exact defined width and height.
+	 * 
+	 * @param width Thumbnail width.
+	 * @param height Thumbnail height.
+	 * @param backgroundColor Background color used to fill area around image.
+	 */
 	public void thumbnailScale(int width, int height, Color backgroundColor) {
 		thumbnailScaleActions.thumbnail(image, width, height, backgroundColor);
 	}
 	
+	/**
+	 * Creates image thumbnail.
+	 * 
+	 * <p>
+	 * If image is bigger, than defined width and height, it will be scaled down to fit defined size.
+	 * 
+	 * <p>
+	 * If image is smaller, than defined width and height, it will be scaled up to fit defined size.
+	 * 
+	 * <p>
+	 * Sacled thumbnail have the same image aspect ratio as original image, therefore if original image has
+	 * different aspect ratio, then top/bottom or left/right edges (depending on aspect ratio difference)
+	 * will be cut off in order for generated image to have exact defined width and height.
+	 * If it is important to have whole image on thumbnail, use
+	 * {@link #thumbnailScale(int, int, Color) thumbnailScale(width, height, backgroundColor)}
+	 * or {@link #thumbnailScale(int, int) thumbnailScale(width, height)}.
+	 * 
+	 * @param width Thumbnail width.
+	 * @param height Thumbnail height.
+	 */
 	public void thumbnailCrop(int width, int height) {
 		thumbnailCropActions.thumbnail(image, width, height);
 	}
