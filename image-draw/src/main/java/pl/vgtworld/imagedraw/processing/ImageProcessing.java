@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
+import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
 public class ImageProcessing {
 	
@@ -247,6 +248,28 @@ public class ImageProcessing {
 	 */
 	public void thumbnailCrop(int width, int height) {
 		thumbnailCropActions.thumbnail(image, width, height);
+	}
+	
+	/**
+	 * Applies filter to currently processed image.
+	 * 
+	 * @param filter Filter to use on image.
+	 */
+	public void applyFilter(ImageDrawFilter filter) {
+		filter.doFilter(image, 0, 0, image.getImage().getWidth(), image.getImage().getHeight());
+	}
+	
+	/**
+	 * Applies filter to defined area of currently processed image.
+	 * 
+	 * @param filter Filter to use on image.
+	 * @param x X ccordinate of the upper-left corner of the specified region.
+	 * @param y Y ccordinate of the upper-left corner of the specified region.
+	 * @param width Width of the specified region.
+	 * @param height Height of the specified region.
+	 */
+	public void applyFilter(ImageDrawFilter filter, int x, int y, int width, int height) {
+		filter.doFilter(image, x, y, width, height);
 	}
 	
 }
