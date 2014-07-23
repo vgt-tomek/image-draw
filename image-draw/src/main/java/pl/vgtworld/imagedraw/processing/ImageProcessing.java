@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
+import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
 public class ImageProcessing {
 	
@@ -27,6 +28,8 @@ public class ImageProcessing {
 	private ImageThumbnailScaleActions thumbnailScaleActions = new ImageThumbnailScaleActions(resizeActions);
 	
 	private ImageThumbnailCropActions thumbnailCropActions = new ImageThumbnailCropActions(resizeActions, cropActions);
+	
+	private FilterValidationHelper filterValidationHelper = new FilterValidationHelper();
 	
 	public ImageDrawEntity getImage() {
 		return image;
@@ -247,6 +250,41 @@ public class ImageProcessing {
 	 */
 	public void thumbnailCrop(int width, int height) {
 		thumbnailCropActions.thumbnail(image, width, height);
+	}
+	
+	/**
+	 * Applies filter to currently processed image.
+	 * 
+	 * <p>
+	 * IllegalStateException is throwed, when there is no image currently processed.
+	 * 
+	 * @param filter Filter to use on image.
+	 * @throws IllegalStateException
+	 */
+	public void applyFilter(ImageDrawFilter filter) {
+		applyFilter(filter, 0, 0, image.getImage().getWidth(), image.getImage().getHeight());
+	}
+	
+	/**
+	 * Applies filter to defined area of currently processed image.
+	 * 
+	 * <p>
+	 * IllegalStateException is throwed, when there is no image currently processed.
+	 * 
+	 * <p>
+	 * IllegalArgumentException is throwed, when defined area is even partially outside of processed image.
+	 * 
+	 * @param filter Filter to use on image.
+	 * @param x X ccordinate of the upper-left corner of the specified region.
+	 * @param y Y ccordinate of the upper-left corner of the specified region.
+	 * @param width Width of the specified region.
+	 * @param height Height of the specified region.
+	 * @throws IllegalArgumentException
+	 * @throws IllegalStateException
+	 */
+	public void applyFilter(ImageDrawFilter filter, int x, int y, int width, int height) {
+		filterValidationHelper.validateParameters(image, x, y, width, height);
+		filter.doFilter(image, x, y, width, height);
 	}
 	
 }
