@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
+/**
+ * Filter converting image to its grayscale version.
+ */
 public class GrayscaleFilter implements ImageDrawFilter {
 	
 	private static final int MAX_PIXEL_BRIGHTNESS = 255;
@@ -21,12 +24,33 @@ public class GrayscaleFilter implements ImageDrawFilter {
 	
 	private float blue;
 	
+	/**
+	 * Creates filter with default configuration.
+	 * 
+	 * <p>
+	 * Each RGB channel is used at the same strength, when converting image to
+	 * grayscale.
+	 */
 	public GrayscaleFilter() {
 		red = 0.33f;
 		green = 0.33f;
 		blue = 0.33f;
 	}
 	
+	/**
+	 * Creates filter with custom configuration.
+	 * 
+	 * <p>
+	 * Each RGB channel can have defined strength, when converting image to
+	 * grayscale. Strength for each channel must be between 0 and 1.
+	 * 
+	 * @param red
+	 *           Red channel strength during convertion.
+	 * @param green
+	 *           Green channel strength during convertion.
+	 * @param blue
+	 *           Blue channel strength during convertion.
+	 */
 	public GrayscaleFilter(float red, float green, float blue) {
 		if (red < 0 || red > 1 || green < 0 || green > 1 || blue < 0 || blue > 1) {
 			throw new IllegalArgumentException("Each channel value must be between 0 and 1.");
@@ -62,4 +86,5 @@ public class GrayscaleFilter implements ImageDrawFilter {
 		}
 		return roundedBrightness;
 	}
+	
 }
