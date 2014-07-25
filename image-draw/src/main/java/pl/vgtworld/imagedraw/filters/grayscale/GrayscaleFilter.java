@@ -28,6 +28,9 @@ public class GrayscaleFilter implements ImageDrawFilter {
 	}
 	
 	public GrayscaleFilter(float red, float green, float blue) {
+		if (red < 0 || red > 1 || green < 0 || green > 1 || blue < 0 || blue > 1) {
+			throw new IllegalArgumentException("Each channel value must be between 0 and 1.");
+		}
 		this.red = red;
 		this.blue = blue;
 		this.green = green;

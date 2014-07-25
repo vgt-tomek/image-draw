@@ -112,6 +112,36 @@ public class GrayscaleFilterTest {
 		assertThat(redPixel.getBlue()).isEqualTo(0);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenConstructingFilterWithBelowRangeRedChannelValue() {
+		new GrayscaleFilter(-0.1f, 1, 1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenConstructingFilterWithAboveRangeRedChannelValue() {
+		new GrayscaleFilter(1.1f, 1, 1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenConstructingFilterWithBelowRangeGreenChannelValue() {
+		new GrayscaleFilter(1, -0.1f, 1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenConstructingFilterWithAboveRangeGreenChannelValue() {
+		new GrayscaleFilter(1, 1.1f, 1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenConstructingFilterWithBelowRangeBlueChannelValue() {
+		new GrayscaleFilter(1, 1, -0.1f);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenConstructingFilterWithAboveRangeBlueChannelValue() {
+		new GrayscaleFilter(1, 1, 1.1f);
+	}
+	
 	private ImageDrawEntity loadImageEntity(String path) throws IOException {
 		BufferedImage image = ImageIO.read(getClass().getResourceAsStream(path));
 		return new ImageDrawEntity(image, ImageType.PNG);
