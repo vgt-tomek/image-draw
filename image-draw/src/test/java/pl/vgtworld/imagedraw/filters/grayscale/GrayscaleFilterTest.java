@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
+import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
 public class GrayscaleFilterTest {
 	
@@ -19,11 +20,10 @@ public class GrayscaleFilterTest {
 	
 	private static final String FILE_GRID = "/image-grid-300-100.png";
 	
-	private GrayscaleFilter filter = new GrayscaleFilter();
-	
 	@Test
 	public void shouldConvertImageToGrayscale() throws IOException {
 		ImageDrawEntity image = loadImageEntity(FILE_PHOTO);
+		GrayscaleFilter filter = new GrayscaleFilter();
 		
 		filter.doFilter(image, 0, 0, 100, 100);
 		Color pixel = new Color(image.getImage().getRGB(50, 50));
@@ -35,6 +35,7 @@ public class GrayscaleFilterTest {
 	@Test
 	public void shouldConvertPartOfImageToGrayscale() throws IOException {
 		ImageDrawEntity image = loadImageEntity(FILE_PHOTO);
+		GrayscaleFilter filter = new GrayscaleFilter();
 		
 		filter.doFilter(image, 50, 50, 50, 50);
 		Color colorPixel = new Color(image.getImage().getRGB(20, 20));
@@ -50,6 +51,7 @@ public class GrayscaleFilterTest {
 	@Test
 	public void shouldConvertGridToGrayscale() throws IOException {
 		ImageDrawEntity image = loadImageEntity(FILE_GRID);
+		GrayscaleFilter filter = new GrayscaleFilter();
 		
 		filter.doFilter(image, 0, 0, 300, 100);
 		Color pixel = new Color(image.getImage().getRGB(9, 0));
@@ -57,6 +59,57 @@ public class GrayscaleFilterTest {
 		assertThat(pixel.getRed()).isEqualTo(84);
 		assertThat(pixel.getGreen()).isEqualTo(84);
 		assertThat(pixel.getBlue()).isEqualTo(84);
+	}
+	
+	@Test
+	public void shouldConvertGridToGrayscaleUsingRedColorChannel() throws IOException {
+		ImageDrawEntity image = loadImageEntity(FILE_GRID);
+		ImageDrawFilter filter = new GrayscaleFilter(1.0f, 0.0f, 0.0f);
+		
+		filter.doFilter(image, 0, 0, 300, 100);
+		Color greenPixel = new Color(image.getImage().getRGB(9, 0));
+		Color redPixel = new Color(image.getImage().getRGB(19, 0));
+		
+		assertThat(greenPixel.getRed()).isEqualTo(0);
+		assertThat(greenPixel.getGreen()).isEqualTo(0);
+		assertThat(greenPixel.getBlue()).isEqualTo(0);
+		assertThat(redPixel.getRed()).isEqualTo(255);
+		assertThat(redPixel.getGreen()).isEqualTo(255);
+		assertThat(redPixel.getBlue()).isEqualTo(255);
+	}
+	
+	@Test
+	public void shouldConvertGridToGrayscaleUsingGreenColorChannel() throws IOException {
+		ImageDrawEntity image = loadImageEntity(FILE_GRID);
+		ImageDrawFilter filter = new GrayscaleFilter(0.0f, 1.0f, 0.0f);
+		
+		filter.doFilter(image, 0, 0, 300, 100);
+		Color greenPixel = new Color(image.getImage().getRGB(9, 0));
+		Color redPixel = new Color(image.getImage().getRGB(19, 0));
+		
+		assertThat(greenPixel.getRed()).isEqualTo(255);
+		assertThat(greenPixel.getGreen()).isEqualTo(255);
+		assertThat(greenPixel.getBlue()).isEqualTo(255);
+		assertThat(redPixel.getRed()).isEqualTo(0);
+		assertThat(redPixel.getGreen()).isEqualTo(0);
+		assertThat(redPixel.getBlue()).isEqualTo(0);
+	}
+	
+	@Test
+	public void shouldConvertGridToGrayscaleUsingBlueColorChannel() throws IOException {
+		ImageDrawEntity image = loadImageEntity(FILE_GRID);
+		ImageDrawFilter filter = new GrayscaleFilter(0.0f, 0.0f, 1.0f);
+		
+		filter.doFilter(image, 0, 0, 300, 100);
+		Color greenPixel = new Color(image.getImage().getRGB(9, 0));
+		Color redPixel = new Color(image.getImage().getRGB(19, 0));
+		
+		assertThat(greenPixel.getRed()).isEqualTo(0);
+		assertThat(greenPixel.getGreen()).isEqualTo(0);
+		assertThat(greenPixel.getBlue()).isEqualTo(0);
+		assertThat(redPixel.getRed()).isEqualTo(0);
+		assertThat(redPixel.getGreen()).isEqualTo(0);
+		assertThat(redPixel.getBlue()).isEqualTo(0);
 	}
 	
 	private ImageDrawEntity loadImageEntity(String path) throws IOException {

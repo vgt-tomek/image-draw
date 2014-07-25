@@ -27,6 +27,12 @@ public class GrayscaleFilter implements ImageDrawFilter {
 		blue = 0.33f;
 	}
 	
+	public GrayscaleFilter(float red, float green, float blue) {
+		this.red = red;
+		this.blue = blue;
+		this.green = green;
+	}
+	
 	@Override
 	public void doFilter(ImageDrawEntity image, int x, int y, int width, int height) {
 		BufferedImage imageData = image.getImage();
