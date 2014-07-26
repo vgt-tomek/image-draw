@@ -8,10 +8,18 @@ import java.awt.image.Kernel;
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
+/**
+ * Filter applying convolution matrix to image.
+ */
 public class MatrixFilter implements ImageDrawFilter {
 	
 	private float[][] matrix;
 	
+	/**
+	 * Creates filter with custom configuration.
+	 * 
+	 * @param matrix Convolution matrix to apply on image.
+	 */
 	public MatrixFilter(float[][] matrix) {
 		this.matrix = matrix;
 	}
