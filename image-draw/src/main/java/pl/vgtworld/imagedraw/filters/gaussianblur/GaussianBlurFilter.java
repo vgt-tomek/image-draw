@@ -4,6 +4,9 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 import pl.vgtworld.imagedraw.filters.matrix.MatrixFilter;
 
+/**
+ * Filter applying gaussian blur to image.
+ */
 public class GaussianBlurFilter implements ImageDrawFilter {
 	
 	private MatrixGenerator matrixGenerator = new MatrixGenerator();
@@ -12,11 +15,25 @@ public class GaussianBlurFilter implements ImageDrawFilter {
 	
 	private double standardDeviation;
 	
+	/**
+	 * Creates filter with custom configuration.
+	 * 
+	 * <p>
+	 * Standard deviation is set to half of provided radius.
+	 * 
+	 * @param radius Gaussian blur radius.
+	 */
 	public GaussianBlurFilter(int radius) {
 		this.radius = radius;
 		standardDeviation = radius / 2.0f;
 	}
 	
+	/**
+	 * Creates filter with custom configuration.
+	 * 
+	 * @param radius Gaussian blur radius.
+	 * @param standardDeviation Gaussian blur standard deviation.
+	 */
 	public GaussianBlurFilter(int radius, double standardDeviation) {
 		this.radius = radius;
 		this.standardDeviation = standardDeviation;
