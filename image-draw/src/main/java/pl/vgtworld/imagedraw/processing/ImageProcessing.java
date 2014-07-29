@@ -25,6 +25,8 @@ public class ImageProcessing {
 	
 	private ImageRotationActions rotationActions = new ImageRotationActions();
 	
+	private ImageFlipActions flipActions = new ImageFlipActions();
+	
 	private ImageThumbnailScaleActions thumbnailScaleActions = new ImageThumbnailScaleActions(resizeActions);
 	
 	private ImageThumbnailCropActions thumbnailCropActions = new ImageThumbnailCropActions(resizeActions, cropActions);
@@ -180,6 +182,20 @@ public class ImageProcessing {
 	 */
 	public void rotate(int degrees, Color backgroundColor) {
 		rotationActions.rotate(image, degrees, backgroundColor);
+	}
+	
+	/**
+	 * Flips image horizontally.
+	 */
+	public void flipHorizontally() {
+		flipActions.flipHorizontal(image);
+	}
+	
+	/**
+	 * Flips image vertically.
+	 */
+	public void flipVertically() {
+		flipActions.flipVertical(image);
 	}
 	
 	/**
