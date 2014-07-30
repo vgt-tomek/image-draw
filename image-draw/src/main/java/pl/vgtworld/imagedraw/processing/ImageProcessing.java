@@ -68,6 +68,36 @@ public class ImageProcessing {
 	}
 	
 	/**
+	 * Opens and returns image file from specified path.
+	 * 
+	 * <p>
+	 * Opens file similar to {@link #open(String) open} method, but returns it instead of
+	 * storing internally for further processing.
+	 * 
+	 * @param path A path to read from.
+	 * @return Loaded image packed into ImageDrawEntity.
+	 * @throws IOException If an error occurs during reading.
+	 */
+	public ImageDrawEntity load(String path) throws IOException {
+		return load(new File(path));
+	}
+	
+	/**
+	 * Opens and returns image file from specified file.
+	 * 
+	 * <p>
+	 * Opens file similar to {@link #open(File) open} method, but returns it instead of
+	 * storing internally for further processing.
+	 * 
+	 * @param file A file to read from.
+	 * @return Loaded image packed into ImageDrawEntity.
+	 * @throws IOException If an error occurs during reading.
+	 */
+	public ImageDrawEntity load(File file) throws IOException {
+		return openActions.open(file);
+	}
+	
+	/**
 	 * Saves currently processed image to specified path.
 	 * 
 	 * @param path A path where image is saved.
