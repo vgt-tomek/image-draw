@@ -31,6 +31,8 @@ public class ImageProcessing {
 	
 	private ImageThumbnailCropActions thumbnailCropActions = new ImageThumbnailCropActions(resizeActions, cropActions);
 	
+	private ImageDrawActions drawImageActions = new ImageDrawActions();
+	
 	private FilterValidationHelper filterValidationHelper = new FilterValidationHelper();
 	
 	public ImageDrawEntity getImage() {
@@ -65,6 +67,36 @@ public class ImageProcessing {
 	 */
 	public void open(InputStream stream) throws IOException {
 		image = openActions.open(stream);
+	}
+	
+	/**
+	 * Opens and returns image file from specified path.
+	 * 
+	 * <p>
+	 * Opens file similar to {@link #open(String) open} method, but returns it instead of
+	 * storing internally for further processing.
+	 * 
+	 * @param path A path to read from.
+	 * @return Loaded image packed into ImageDrawEntity.
+	 * @throws IOException If an error occurs during reading.
+	 */
+	public ImageDrawEntity load(String path) throws IOException {
+		return load(new File(path));
+	}
+	
+	/**
+	 * Opens and returns image file from specified file.
+	 * 
+	 * <p>
+	 * Opens file similar to {@link #open(File) open} method, but returns it instead of
+	 * storing internally for further processing.
+	 * 
+	 * @param file A file to read from.
+	 * @return Loaded image packed into ImageDrawEntity.
+	 * @throws IOException If an error occurs during reading.
+	 */
+	public ImageDrawEntity load(File file) throws IOException {
+		return openActions.open(file);
 	}
 	
 	/**
@@ -266,6 +298,17 @@ public class ImageProcessing {
 	 */
 	public void thumbnailCrop(int width, int height) {
 		thumbnailCropActions.thumbnail(image, width, height);
+	}
+	
+	/**
+	 * Draws provided image on currently processed image and at defined position.
+	 * 
+	 * @param otherImage Image to use.
+	 * @param x Starting position X coordinate, where image should be copied.
+	 * @param y Starting position Y coordinate, where image should be copied.
+	 */
+	public void drawImage(ImageDrawEntity otherImage, int x, int y) {
+		drawImageActions.drawImage(otherImage, image, x, y);
 	}
 	
 	/**
