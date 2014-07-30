@@ -31,6 +31,8 @@ public class ImageProcessing {
 	
 	private ImageThumbnailCropActions thumbnailCropActions = new ImageThumbnailCropActions(resizeActions, cropActions);
 	
+	private ImageDrawActions drawImageActions = new ImageDrawActions();
+	
 	private FilterValidationHelper filterValidationHelper = new FilterValidationHelper();
 	
 	public ImageDrawEntity getImage() {
@@ -296,6 +298,17 @@ public class ImageProcessing {
 	 */
 	public void thumbnailCrop(int width, int height) {
 		thumbnailCropActions.thumbnail(image, width, height);
+	}
+	
+	/**
+	 * Draws provided image on currently processed image and at defined position.
+	 * 
+	 * @param otherImage Image to use.
+	 * @param x Starting position X coordinate, where image should be copied.
+	 * @param y Starting position Y coordinate, where image should be copied.
+	 */
+	public void drawImage(ImageDrawEntity otherImage, int x, int y) {
+		drawImageActions.drawImage(otherImage, image, x, y);
 	}
 	
 	/**
