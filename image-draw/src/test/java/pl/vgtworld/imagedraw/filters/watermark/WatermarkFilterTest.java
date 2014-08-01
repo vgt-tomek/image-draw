@@ -17,6 +17,28 @@ public class WatermarkFilterTest {
 	@Test
 	public void shouldBuildWatermarkFilterSingleVersion() throws IOException {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
+				.setWatermark(loadWatermark())
+				.setMargin(10)
+				.setLocation(WatermarkLocation.UPPER_LEFT)
+				.build();
+		
+		assertThat(filter).isNotNull();
+	}
+	
+	@Test
+	public void shouldBuildWatermarkFilterRepeatedVersion() throws IOException {
+		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.REPEATED)
+				.setWatermark(loadWatermark())
+				.build();
+		
+		assertThat(filter).isNotNull();
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void shouldFailBecauseOfMissingType() throws IOException {
+		WatermarkFilter filter = new WatermarkFilter.Builder()
 				.setWatermark(loadWatermark())
 				.setMargin(10)
 				.setLocation(WatermarkLocation.UPPER_LEFT)
@@ -28,6 +50,7 @@ public class WatermarkFilterTest {
 	@Test(expected = IllegalStateException.class)
 	public void shouldFailBecauseOfMissingWatermark() {
 		new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setMargin(10)
 				.setLocation(WatermarkLocation.UPPER_LEFT)
 				.build();
@@ -36,6 +59,7 @@ public class WatermarkFilterTest {
 	@Test(expected = IllegalStateException.class)
 	public void shouldFailBecauseOfMissingLocation() throws IOException {
 		new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(loadWatermark())
 				.setMargin(10)
 				.build();
@@ -44,6 +68,7 @@ public class WatermarkFilterTest {
 	@Test
 	public void shouldBuildFilterWhenMarginIsMissing() throws IOException {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(loadWatermark())
 				.setLocation(WatermarkLocation.UPPER_LEFT)
 				.build();
@@ -54,9 +79,28 @@ public class WatermarkFilterTest {
 	@Test(expected = IllegalStateException.class)
 	public void shouldFailBecauseOfUsingMarginWithCenterLocation() throws IOException {
 		new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(loadWatermark())
 				.setLocation(WatermarkLocation.CENTER)
 				.setMargin(10)
+				.build();
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void shouldFailBecauseOfNegativeHorizontalSpacing() throws IOException {
+		new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.REPEATED)
+				.setWatermark(loadWatermark())
+				.setHorizontalSpacing(-10)
+				.build();
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void shouldFailBecauseOfNegativeVerticalSpacing() throws IOException {
+		new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.REPEATED)
+				.setWatermark(loadWatermark())
+				.setVerticalSpacing(-10)
 				.build();
 	}
 	
