@@ -29,6 +29,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInUpperLeftCorner() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.UPPER_LEFT)
 				.build();
@@ -48,6 +49,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInUpperLeftCornerWithMargin() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.UPPER_LEFT)
 				.setMargin(10)
@@ -68,6 +70,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInUpperRightCorner() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.UPPER_RIGHT)
 				.build();
@@ -87,6 +90,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInUpperRightCornerWithMargin() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.UPPER_RIGHT)
 				.setMargin(10)
@@ -107,6 +111,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInLowerLeftCorner() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.LOWER_LEFT)
 				.build();
@@ -126,6 +131,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInLowerLeftCornerWithMargin() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.LOWER_LEFT)
 				.setMargin(10)
@@ -146,6 +152,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInLowerRightCorner() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.LOWER_RIGHT)
 				.build();
@@ -165,6 +172,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInLowerRightCornerWithMargin() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.LOWER_RIGHT)
 				.setMargin(10)
@@ -185,6 +193,7 @@ public class WatermarkFilterSingleTest {
 	@Test
 	public void shouldPlaceWatermarkInCenter() {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
+				.setType(WatermarkFilterType.SINGLE)
 				.setWatermark(watermark)
 				.setLocation(WatermarkLocation.CENTER)
 				.build();
