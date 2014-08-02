@@ -23,4 +23,22 @@ class ImageEdgeResizeHelper {
 		return finalImage;
 	}
 
+	BufferedImage removeEdgesFromImage(BufferedImage sourceImage, int edgeSize) {
+		int finalImageWidth = sourceImage.getWidth() - 2 * edgeSize;
+		int finalImageHeight = sourceImage.getHeight() - 2 * edgeSize;
+		BufferedImage finalImage = new BufferedImage(finalImageWidth, finalImageHeight, sourceImage.getType());
+		
+		Graphics2D graphics = finalImage.createGraphics();
+		graphics.drawImage(
+				sourceImage,
+				0, 0,
+				finalImageWidth, finalImageHeight,
+				edgeSize, edgeSize,
+				edgeSize + finalImageWidth, edgeSize + finalImageHeight,
+				null
+				);
+		graphics.dispose();
+		return finalImage;
+	}
+	
 }

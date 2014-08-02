@@ -85,4 +85,41 @@ public class ImageEdgeResizeHelperTest {
 		}
 	}
 	
+	@Test
+	public void shouldRemoveEdgesFromImage() throws IOException {
+		BufferedImage sourceImage = ImageIO.read(getClass().getResourceAsStream(IMAGE_PATH));
+		
+		int upperLeftPixelBefore = sourceImage.getRGB(ADDITIONAL_EDGE_SIZE, ADDITIONAL_EDGE_SIZE);
+		int lowerRightPixelBefore = sourceImage.getRGB(
+				IMAGE_WIDTH - ADDITIONAL_EDGE_SIZE - 1,
+				IMAGE_HEIGHT - ADDITIONAL_EDGE_SIZE - 1
+				);
+		BufferedImage result = helper.removeEdgesFromImage(sourceImage, ADDITIONAL_EDGE_SIZE);
+		int upperLeftPixelAfter = result.getRGB(0, 0);
+		int lowerRightPixelAfter = result.getRGB(
+				IMAGE_WIDTH - 2 * ADDITIONAL_EDGE_SIZE - 1,
+				IMAGE_HEIGHT - 2 * ADDITIONAL_EDGE_SIZE - 1
+				);
+		
+		assertThat(result.getWidth()).isEqualTo(IMAGE_WIDTH - 2 * ADDITIONAL_EDGE_SIZE);
+		assertThat(result.getHeight()).isEqualTo(IMAGE_HEIGHT - 2 * ADDITIONAL_EDGE_SIZE);
+		assertThat(upperLeftPixelBefore).isEqualTo(upperLeftPixelAfter);
+		assertThat(lowerRightPixelBefore).isEqualTo(lowerRightPixelAfter);
+	}
+	
+	@Test
+	public void shouldNotChangeImageWhenAddingAndRemovingTheSameAmountOfEdges() throws IOException {
+		BufferedImage sourceImage = ImageIO.read(getClass().getResourceAsStream(IMAGE_PATH));
+		
+		BufferedImage withEdges = helper.addEdgesToImage(sourceImage, 5);
+		BufferedImage result = helper.removeEdgesFromImage(withEdges, 5);
+		
+		assertThat(sourceImage.getWidth()).isEqualTo(result.getWidth());
+		assertThat(sourceImage.getHeight()).isEqualTo(result.getHeight());
+		for (int i = 0; i < result.getWidth(); ++i) {
+			for (int j = 0; j < result.getHeight(); ++j) {
+				assertThat(sourceImage.getRGB(i, j)).isEqualTo(result.getRGB(i, j));
+			}
+		}
+	}
 }
