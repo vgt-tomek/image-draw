@@ -7,10 +7,18 @@ import java.awt.image.BufferedImage;
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
+/**
+ * Filter applying mosaic effect to image.
+ */
 public class MosaicFilter implements ImageDrawFilter {
 	
 	private int size;
 	
+	/**
+	 * Creates filter with custom configuration.
+	 * 
+	 * @param size Cell size.
+	 */
 	public MosaicFilter(int size) {
 		if (size <= 0) {
 			throw new IllegalArgumentException("Size must be greater than 0.");
