@@ -1,6 +1,7 @@
 package pl.vgtworld.imagedraw.processing;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +33,8 @@ public class ImageProcessing {
 	private ImageThumbnailCropActions thumbnailCropActions = new ImageThumbnailCropActions(resizeActions, cropActions);
 	
 	private ImageDrawActions drawImageActions = new ImageDrawActions();
+	
+	private ImageTextActions textActions = new ImageTextActions();
 	
 	private FilterValidationHelper filterValidationHelper = new FilterValidationHelper();
 	
@@ -309,6 +312,42 @@ public class ImageProcessing {
 	 */
 	public void drawImage(ImageDrawEntity otherImage, int x, int y) {
 		drawImageActions.drawImage(otherImage, image, x, y);
+	}
+	
+	/**
+	 * Draws text on image.
+	 * 
+	 * <p>
+	 * By default font is left-aligned horizontally (starting at x position)
+	 * and baseline-alligned vertically (starting at y position).
+	 * 
+	 * <p>
+	 * To control text alignment use overloaded method {@link #drawText(String, Color, Font, int, int, TextHorizontalPosition, TextVerticalPosition) drawText}.
+	 * 
+	 * @param text String to be rendered.
+	 * @param color Color of the text.
+	 * @param font Font to use, when rendering text.
+	 * @param x X position, where text will be rendered. 
+	 * @param y Y position, where text will be rendered.
+	 */
+	public void drawText(String text, Color color, Font font, int x, int y) {
+		textActions.drawText(image, text, font, color, x, y, TextHorizontalPosition.LEFT, TextVerticalPosition.BASELINE);
+	}
+	
+	/**
+	 * Draws text on image.
+	 * 
+	 * @param text String to be rendered.
+	 * @param color Color of the text.
+	 * @param font Font to use, when rendering text.
+	 * @param x X position, where text will be rendered. 
+	 * @param y Y position, where text will be rendered.
+	 * @param horizontalPositioning Horizontal text alignment.
+	 * @param verticalPositioning Vertical text alignment.
+	 */
+	public void drawText(String text, Color color, Font font,
+			int x, int y, TextHorizontalPosition horizontalPositioning, TextVerticalPosition verticalPositioning) {
+		textActions.drawText(image, text, font, color, x, y, horizontalPositioning, verticalPositioning);
 	}
 	
 	/**
