@@ -13,6 +13,8 @@ import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
  */
 public class MatrixFilter implements ImageDrawFilter {
 	
+	private ImageEdgeResizeHelper edgeResizeHelper = new ImageEdgeResizeHelper();
+	
 	private float[][] matrix;
 	
 	/**
@@ -29,7 +31,10 @@ public class MatrixFilter implements ImageDrawFilter {
 		float[] kernelArray = MatrixConverter.convertToOneDimensionalArray(matrix);
 		Kernel kernelMatrix = new Kernel(matrix[0].length, matrix.length, kernelArray);
 		ConvolveOp convolve = new ConvolveOp(kernelMatrix);
-		BufferedImage convolvedImage = convolve.filter(image.getImage(), null);
+		int requiredEdgeCount = matrix[0].length > matrix.length ? matrix[0].length : matrix.length;
+		BufferedImage imageWithEdges = edgeResizeHelper.addEdgesToImage(image.getImage(), requiredEdgeCount);
+		BufferedImage convolvedImageWithEdges = convolve.filter(imageWithEdges, null);
+		BufferedImage convolvedImage = edgeResizeHelper.removeEdgesFromImage(convolvedImageWithEdges, requiredEdgeCount);
 		copyImageArea(convolvedImage, image.getImage(), x, y, width, height);
 	}
 	
