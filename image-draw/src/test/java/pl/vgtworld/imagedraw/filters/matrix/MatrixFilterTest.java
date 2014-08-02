@@ -31,6 +31,22 @@ public class MatrixFilterTest {
 	}
 	
 	@Test
+	public void shouldNotMakeAnyChangesToEdgesOfImage() throws IOException {
+		ImageDrawEntity imageEntity = createEntity();
+		float[][] matrix = new float[][] { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
+		MatrixFilter filter = new MatrixFilter(matrix);
+		
+		int leftPixelBefore = imageEntity.getImage().getRGB(0, 0);
+		int rightPixelBefore = imageEntity.getImage().getRGB(99, 99);
+		filter.doFilter(imageEntity, 50, 50, 50, 100);
+		int leftPixelAfter = imageEntity.getImage().getRGB(0, 0);
+		int rightPixelAfter = imageEntity.getImage().getRGB(99, 99);
+		
+		assertThat(leftPixelBefore).isEqualTo(leftPixelAfter);
+		assertThat(rightPixelBefore).isEqualTo(rightPixelAfter);
+	}
+	
+	@Test
 	public void shouldConvertRightHalfOfImage() throws IOException {
 		ImageDrawEntity imageEntity = createEntity();
 		float[][] matrix = new float[][] { { -1, -1, -1 }, { -1, 8, -1 }, { -1, -1, -1 } };
