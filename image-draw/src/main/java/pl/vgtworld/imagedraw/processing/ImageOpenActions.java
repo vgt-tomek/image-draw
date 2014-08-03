@@ -16,11 +16,11 @@ class ImageOpenActions {
 	
 	private ImageTypeMapper imageTypeMapper;
 	
-	public ImageOpenActions(ImageTypeMapper imageTypeMapper) {
+	ImageOpenActions(ImageTypeMapper imageTypeMapper) {
 		this.imageTypeMapper = imageTypeMapper;
 	}
 	
-	public ImageDrawEntity open(File file) throws IOException {
+	ImageDrawEntity open(File file) throws IOException {
 		BufferedImage bufferedImage = ImageIO.read(file);
 		ImageType imageType = imageTypeMapper.mapFromExtension(file.getName());
 		if (imageType == null) {
@@ -29,11 +29,11 @@ class ImageOpenActions {
 		return new ImageDrawEntity(bufferedImage, imageType);
 	}
 	
-	public ImageDrawEntity open(InputStream stream) throws IOException {
+	ImageDrawEntity open(InputStream stream) throws IOException {
 		return open(stream, DEFAULT_IMAGE_TYPE);
 	}
 	
-	public ImageDrawEntity open(InputStream stream, ImageType imageType) throws IOException {
+	ImageDrawEntity open(InputStream stream, ImageType imageType) throws IOException {
 		BufferedImage bufferedImage = ImageIO.read(stream);
 		return new ImageDrawEntity(bufferedImage, imageType);
 	}

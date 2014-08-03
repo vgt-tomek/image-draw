@@ -6,7 +6,7 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageCropActions {
 	
-	public void crop(ImageDrawEntity image, int x, int y, int width, int height) {
+	void crop(ImageDrawEntity image, int x, int y, int width, int height) {
 		BufferedImage bufferedImage = image.getImage();
 		validateParameters(bufferedImage, x, y, width, height);
 		BufferedImage subimage = bufferedImage.getSubimage(x, y, width, height);

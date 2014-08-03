@@ -10,11 +10,11 @@ class ImageThumbnailScaleActions {
 	
 	private ImageResizeActions resizeActions;
 	
-	public ImageThumbnailScaleActions(ImageResizeActions resizeActions) {
+	ImageThumbnailScaleActions(ImageResizeActions resizeActions) {
 		this.resizeActions = resizeActions;
 	}
 	
-	public void thumbnail(ImageDrawEntity image, int width, int height, Color backgroundColor) {
+	void thumbnail(ImageDrawEntity image, int width, int height, Color backgroundColor) {
 		validateParameters(width, height);
 		
 		BufferedImage bufferedImage = image.getImage();

@@ -22,7 +22,7 @@ class ImageTypeMapper {
 		imageTypeToExtension.put(ImageType.PNG, "png");
 	}
 	
-	public ImageType mapFromExtension(String path) {
+	ImageType mapFromExtension(String path) {
 		String lowerCasePath = path.toLowerCase();
 		int index = lowerCasePath.lastIndexOf('.');
 		if (index < 0) {
@@ -32,7 +32,7 @@ class ImageTypeMapper {
 		return extensionToImageType.get(pathSuffix);
 	}
 	
-	public String mapFromImageType(ImageType imageType) {
+	String mapFromImageType(ImageType imageType) {
 		return imageTypeToExtension.get(imageType);
 	}
 	

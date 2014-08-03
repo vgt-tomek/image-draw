@@ -7,7 +7,7 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageResizeActions {
 	
-	public void resize(ImageDrawEntity image, Integer newWidth, Integer newHeight) {
+	void resize(ImageDrawEntity image, Integer newWidth, Integer newHeight) {
 		dimensionValidation(newWidth, newHeight);
 		if (newWidth == null) {
 			newWidth = calculateNewWidth(image, newHeight);

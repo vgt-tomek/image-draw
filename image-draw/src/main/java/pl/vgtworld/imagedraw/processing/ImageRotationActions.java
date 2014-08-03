@@ -11,7 +11,7 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageRotationActions {
 	
-	public void rotate(ImageDrawEntity image, int rotation, Color backgroundColor) {
+	void rotate(ImageDrawEntity image, int rotation, Color backgroundColor) {
 		BufferedImage bufferedImage = image.getImage();
 		int width = bufferedImage.getWidth();
 		int height = bufferedImage.getHeight();
