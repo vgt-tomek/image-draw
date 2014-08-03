@@ -16,7 +16,7 @@ There are two ways to use this library.
 Functionalities
 ---
 
-Core functionalities:
+**Core functionalities:**
 - opening and saving images
 - resizing
 - cropping
@@ -29,7 +29,7 @@ Core functionalities:
 Description of core functionalities can be found on [core functionalities wiki page](https://github.com/vgt-tomek/image-draw/wiki/Core-functionalities)
 
 
-Additional filtering functionalities:
+**Additional filtering functionalities:**
 
 There are multiple filters with different effects, that can be used on image. List of currently available filters: grayscale, convolution matrix, gaussian blur, invert colors, watermark, mosaic
 
