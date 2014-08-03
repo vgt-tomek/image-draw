@@ -12,6 +12,8 @@ import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
  */
 public class InvertColorsFilter implements ImageDrawFilter {
 	
+	private static final float MAX_COLOR_CHANNEL_VALUE = 255f;
+
 	@Override
 	public void doFilter(ImageDrawEntity image, int x, int y, int width, int height) {
 		BufferedImage sourceImage = image.getImage();
@@ -20,7 +22,7 @@ public class InvertColorsFilter implements ImageDrawFilter {
 				sourceImage.getHeight(),
 				sourceImage.getType()
 				);
-		RescaleOp op = new RescaleOp(-1f, 255f, null);
+		RescaleOp op = new RescaleOp(-1f, MAX_COLOR_CHANNEL_VALUE, null);
 		invertedImage = op.filter(sourceImage, null);
 		
 		Graphics2D graphics = sourceImage.createGraphics();

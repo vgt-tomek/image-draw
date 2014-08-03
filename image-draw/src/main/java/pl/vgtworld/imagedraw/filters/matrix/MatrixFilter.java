@@ -23,7 +23,11 @@ public class MatrixFilter implements ImageDrawFilter {
 	 * @param matrix Convolution matrix to apply on image.
 	 */
 	public MatrixFilter(float[][] matrix) {
-		this.matrix = matrix;
+		this.matrix = new float[matrix.length][];
+		for (int i = 0; i < matrix.length; ++i) {
+			this.matrix[i] = new float[matrix[i].length];
+			System.arraycopy(matrix[i], 0, this.matrix[i], 0, matrix[i].length);
+		}
 	}
 	
 	@Override

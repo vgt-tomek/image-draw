@@ -2,6 +2,7 @@ package pl.vgtworld.imagedraw.processing;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -334,7 +335,10 @@ public class ImageProcessing {
 	 * @param y Y position, where text will be rendered.
 	 */
 	public void drawText(String text, Color color, Font font, int x, int y) {
-		textActions.drawText(image, text, font, color, x, y, TextHorizontalPosition.LEFT, TextVerticalPosition.BASELINE);
+		textActions.drawText(
+				image, text, font, color,
+				new Point(x, y), TextHorizontalPosition.LEFT, TextVerticalPosition.BASELINE
+				);
 	}
 	
 	/**
@@ -350,7 +354,10 @@ public class ImageProcessing {
 	 */
 	public void drawText(String text, Color color, Font font,
 			int x, int y, TextHorizontalPosition horizontalPositioning, TextVerticalPosition verticalPositioning) {
-		textActions.drawText(image, text, font, color, x, y, horizontalPositioning, verticalPositioning);
+		textActions.drawText(
+				image, text, font, color,
+				new Point(x, y), horizontalPositioning, verticalPositioning
+				);
 	}
 	
 	/**
