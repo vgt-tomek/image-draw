@@ -1,7 +1,17 @@
 package pl.vgtworld.imagedraw.filters;
 
+/**
+ * Matrix normalize helper.
+ */
 public class MatrixNormalizeHelper {
 	
+	/**
+	 * Normalizes matrix values (scaling them up or down), so that sum of all
+	 * elements is as close as possible to 1.
+	 * 
+	 * @param matrix Matrix to normalize.
+	 * @return Normalized matrix.
+	 */
 	public float[][] normalizeMatrix(float[][] matrix) {
 		double sum = sumMatrix(matrix);
 		double modifier = 1 / sum;

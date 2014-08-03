@@ -10,6 +10,9 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.ImageType;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
+/**
+ * Main image processing class used for laoding, processing and saving images.
+ */
 public class ImageProcessing {
 	
 	private ImageDrawEntity image;
