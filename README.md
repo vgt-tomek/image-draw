@@ -33,4 +33,6 @@ Description of core functionalities can be found on [core functionalities wiki p
 
 There are multiple filters with different effects, that can be used on image. List of currently available filters: grayscale, convolution matrix, gaussian blur, invert colors, watermark, mosaic
 
+![filters showcase](http://vgtworld.pl/img_www/github/image-draw/wiki/filters-showcase-1.png)
+
 Usage description of each filter can be found on [filters wiki page](https://github.com/vgt-tomek/image-draw/wiki/Filters)
