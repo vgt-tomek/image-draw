@@ -10,12 +10,12 @@ class ImageThumbnailCropActions {
 	
 	private ImageCropActions cropActions;
 	
-	public ImageThumbnailCropActions(ImageResizeActions resizeActions, ImageCropActions cropActions) {
+	ImageThumbnailCropActions(ImageResizeActions resizeActions, ImageCropActions cropActions) {
 		this.resizeActions = resizeActions;
 		this.cropActions = cropActions;
 	}
 	
-	public void thumbnail(ImageDrawEntity image, int width, int height) {
+	void thumbnail(ImageDrawEntity image, int width, int height) {
 		validateParameters(width, height);
 		BufferedImage bufferedImage = image.getImage();
 		double xRatio = bufferedImage.getWidth() / (double) width;

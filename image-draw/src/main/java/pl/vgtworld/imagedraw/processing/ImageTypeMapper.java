@@ -7,33 +7,33 @@ import pl.vgtworld.imagedraw.ImageType;
 
 class ImageTypeMapper {
 	
-	private static final Map<String, ImageType> extensionToImageType = new HashMap<>();
+	private static final Map<String, ImageType> EXTENSION_TO_IMAGE_TYPE = new HashMap<>();
 	
-	private static final Map<ImageType, String> imageTypeToExtension = new HashMap<>();
+	private static final Map<ImageType, String> IMAGE_TYPE_TO_EXTENSION = new HashMap<>();
 	
 	static {
-		extensionToImageType.put(".jpg", ImageType.JPEG);
-		extensionToImageType.put(".jpeg", ImageType.JPEG);
-		extensionToImageType.put(".bmp", ImageType.BMP);
-		extensionToImageType.put(".png", ImageType.PNG);
+		EXTENSION_TO_IMAGE_TYPE.put(".jpg", ImageType.JPEG);
+		EXTENSION_TO_IMAGE_TYPE.put(".jpeg", ImageType.JPEG);
+		EXTENSION_TO_IMAGE_TYPE.put(".bmp", ImageType.BMP);
+		EXTENSION_TO_IMAGE_TYPE.put(".png", ImageType.PNG);
 		
-		imageTypeToExtension.put(ImageType.JPEG, "jpg");
-		imageTypeToExtension.put(ImageType.BMP, "bmp");
-		imageTypeToExtension.put(ImageType.PNG, "png");
+		IMAGE_TYPE_TO_EXTENSION.put(ImageType.JPEG, "jpg");
+		IMAGE_TYPE_TO_EXTENSION.put(ImageType.BMP, "bmp");
+		IMAGE_TYPE_TO_EXTENSION.put(ImageType.PNG, "png");
 	}
 	
-	public ImageType mapFromExtension(String path) {
+	ImageType mapFromExtension(String path) {
 		String lowerCasePath = path.toLowerCase();
 		int index = lowerCasePath.lastIndexOf('.');
 		if (index < 0) {
 			return null;
 		}
 		String pathSuffix = lowerCasePath.substring(index);
-		return extensionToImageType.get(pathSuffix);
+		return EXTENSION_TO_IMAGE_TYPE.get(pathSuffix);
 	}
 	
-	public String mapFromImageType(ImageType imageType) {
-		return imageTypeToExtension.get(imageType);
+	String mapFromImageType(ImageType imageType) {
+		return IMAGE_TYPE_TO_EXTENSION.get(imageType);
 	}
 	
 }

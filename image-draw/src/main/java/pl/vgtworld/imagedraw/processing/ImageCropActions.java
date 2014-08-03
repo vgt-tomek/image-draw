@@ -6,7 +6,7 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageCropActions {
 	
-	public void crop(ImageDrawEntity image, int x, int y, int width, int height) {
+	void crop(ImageDrawEntity image, int x, int y, int width, int height) {
 		BufferedImage bufferedImage = image.getImage();
 		validateParameters(bufferedImage, x, y, width, height);
 		BufferedImage subimage = bufferedImage.getSubimage(x, y, width, height);
@@ -14,6 +14,11 @@ class ImageCropActions {
 	}
 	
 	private void validateParameters(BufferedImage image, int x, int y, int width, int height) {
+		validateStartingPoint(image, x, y);
+		validateAreaSize(image, x, y, width, height);
+	}
+	
+	private void validateStartingPoint(BufferedImage image, int x, int y) {
 		if (x < 0 || x >= image.getWidth()) {
 			String message = "X should not be smaller than zero or greater than image width. X=" + x;
 			throw new IllegalArgumentException(message);
@@ -22,6 +27,9 @@ class ImageCropActions {
 			String message = "Y should not be smaller than zero or greater than image height. Y=" + y;
 			throw new IllegalArgumentException(message);
 		}
+	}
+	
+	private void validateAreaSize(BufferedImage image, int x, int y, int width, int height) {
 		if (width <= 0 || x + width > image.getWidth()) {
 			String message = "Width should not be smaller than zero or bigger than available image width. width=" + width;
 			throw new IllegalArgumentException(message);

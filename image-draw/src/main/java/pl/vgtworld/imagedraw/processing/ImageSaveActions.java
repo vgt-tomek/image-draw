@@ -13,11 +13,11 @@ class ImageSaveActions {
 	
 	private ImageTypeMapper imageTypeMapper;
 	
-	public ImageSaveActions(ImageTypeMapper imageTypeMapper) {
+	ImageSaveActions(ImageTypeMapper imageTypeMapper) {
 		this.imageTypeMapper = imageTypeMapper;
 	}
 	
-	public void save(ImageDrawEntity image, File file) throws IOException {
+	void save(ImageDrawEntity image, File file) throws IOException {
 		BufferedImage imageData = image.getImage();
 		ImageType imageType = image.getImageType();
 		if (imageData == null) {

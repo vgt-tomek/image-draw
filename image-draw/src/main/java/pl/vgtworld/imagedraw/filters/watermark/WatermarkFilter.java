@@ -3,11 +3,17 @@ package pl.vgtworld.imagedraw.filters.watermark;
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
+/**
+ * Filter applying watermark on image.
+ */
 public abstract class WatermarkFilter implements ImageDrawFilter {
 	
 	protected WatermarkFilter() {
 	}
 	
+	/**
+	 * Builder class used for creating watermark filter with custom configuration.
+	 */
 	public static class Builder {
 		
 		private WatermarkFilterType type;
@@ -26,46 +32,130 @@ public abstract class WatermarkFilter implements ImageDrawFilter {
 		
 		private int verticalSpacing;
 		
+		/**
+		 * Allows to set type of created filter
+		 * .
+		 * @param type Filter type.
+		 * @return Builder instance.
+		 */
 		public Builder setType(WatermarkFilterType type) {
 			this.type = type;
 			return this;
 		}
 		
+		/**
+		 * Allows to set image, that will be used by filter as watermark.
+		 * 
+		 * @param watermark Watermark image.
+		 * @return Builder instance.
+		 */
 		public Builder setWatermark(ImageDrawEntity watermark) {
 			this.watermark = watermark;
 			return this;
 		}
 		
+		/**
+		 * Allows to set location, where watermark will be rendered on image.
+		 * 
+		 * <p>
+		 * This option can be used only with
+		 * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkFilterType#SINGLE WatermarkFilterType.SINGLE}
+		 * filter type.
+		 * 
+		 * @param location Watermark location.
+		 * @return Builder instance.
+		 */
 		public Builder setLocation(WatermarkLocation location) {
 			this.location = location;
 			return this;
 		}
 		
+		/**
+		 * Allows to set distance from edge of image, when placing watermark.
+		 * 
+		 * <p>
+		 * This option can be used only with
+		 * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkFilterType#SINGLE WatermarkFilterType.SINGLE}
+		 * filter type and location other than
+		 * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkLocation#CENTER WatermarkLocation.CENTER}. 
+		 * 
+		 * @param margin Distance from image edge in pixels.
+		 * @return Builder instance.
+		 */
 		public Builder setMargin(int margin) {
 			this.margin = margin;
 			return this;
 		}
 		
+		/**
+		 * Allows to set starting horizontal offset of watermark placement from upper-left corner of image.
+		 * 
+		 * <p>
+		 * This option can be used only with
+		 * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkFilterType#REPEATED WatermarkFilterType.REPEATED}
+		 * filter type.
+		 * 
+		 * @param xOffset Horizontal offset from upper-left corner of image.
+		 * @return Builder instance.
+		 */
 		public Builder setXOffset(int xOffset) {
 			this.xOffset = xOffset;
 			return this;
 		}
 		
+		/**
+		 * Allows to set starting vertical offset of watermark placement from upper-left corner of image.
+		 * 
+		 * <p>
+		 * This option can be used only with
+		 * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkFilterType#REPEATED WatermarkFilterType.REPEATED}
+		 * filter type.
+		 * 
+		 * @param yOffset Vertical offset from upper-left corner of image.
+		 * @return Builder instance.
+		 */
 		public Builder setYOffset(int yOffset) {
 			this.yOffset = yOffset;
 			return this;
 		}
 		
+		/**
+		 * Allows to set horizontal spacing between rendered watermarks.
+		 * 
+		 * <p>
+		 * This option can be used only with
+		 * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkFilterType#REPEATED WatermarkFilterType.REPEATED}
+		 * filter type.
+		 * 
+		 * @param horizontalSpacing Horizontal spacing between rendered watermarks.
+		 * @return Builder instance.
+		 */
 		public Builder setHorizontalSpacing(int horizontalSpacing) {
 			this.horizontalSpacing = horizontalSpacing;
 			return this;
 		}
 		
+		/**
+		 * Allows to set vertical spacing between rendered watermarks.
+		 * 
+		 * <p>
+		 * This option can be used only with
+		 * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkFilterType#REPEATED WatermarkFilterType.REPEATED}
+		 * filter type.
+		 * 
+		 * @param verticalSpacing Vertical spacing between rendered watermarks.
+		 * @return Builder instance.
+		 */
 		public Builder setVerticalSpacing(int verticalSpacing) {
 			this.verticalSpacing = verticalSpacing;
 			return this;
 		}
 		
+		/**
+		 * Creates filter object based on defined configuration.
+		 * 
+		 * @return Filter object.
+		 */
 		public WatermarkFilter build() {
 			validateCommonData();
 			switch (type) {

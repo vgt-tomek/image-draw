@@ -10,6 +10,8 @@ import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
  */
 public class GrayscaleFilter implements ImageDrawFilter {
 	
+	private static final float ONE_THIRD_CHANNEL_STRENGTH = 0.33f;
+	
 	private static final int MAX_PIXEL_BRIGHTNESS = 255;
 	
 	private static final int RED_BIT_OFFSET = 16;
@@ -32,9 +34,9 @@ public class GrayscaleFilter implements ImageDrawFilter {
 	 * grayscale.
 	 */
 	public GrayscaleFilter() {
-		red = 0.33f;
-		green = 0.33f;
-		blue = 0.33f;
+		red = ONE_THIRD_CHANNEL_STRENGTH;
+		green = ONE_THIRD_CHANNEL_STRENGTH;
+		blue = ONE_THIRD_CHANNEL_STRENGTH;
 	}
 	
 	/**
@@ -52,7 +54,10 @@ public class GrayscaleFilter implements ImageDrawFilter {
 	 *           Blue channel strength during convertion.
 	 */
 	public GrayscaleFilter(float red, float green, float blue) {
-		if (red < 0 || red > 1 || green < 0 || green > 1 || blue < 0 || blue > 1) {
+		if (!validateChannelStrengthRange(red)
+				|| !validateChannelStrengthRange(green)
+				|| !validateChannelStrengthRange(blue)
+				) {
 			throw new IllegalArgumentException("Each channel value must be between 0 and 1.");
 		}
 		this.red = red;
@@ -71,8 +76,15 @@ public class GrayscaleFilter implements ImageDrawFilter {
 		}
 	}
 	
+	private boolean validateChannelStrengthRange(float strength) {
+		if (strength < 0 || strength > 1) {
+			return false;
+		}
+		return true;
+	}
+	
 	private int convertBrightnessToColor(int brightness) {
-		return brightness + (brightness << 8) + (brightness << 16);
+		return brightness + (brightness << GREEN_BIT_OFFSET) + (brightness << RED_BIT_OFFSET);
 	}
 	
 	private int calculatePixelBrightness(int rgb) {

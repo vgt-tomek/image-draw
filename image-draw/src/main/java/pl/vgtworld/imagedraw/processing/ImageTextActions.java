@@ -3,6 +3,7 @@ package pl.vgtworld.imagedraw.processing;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 
 import pl.vgtworld.imagedraw.ImageDrawEntity;
@@ -10,11 +11,11 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 class ImageTextActions {
 	
 	void drawText(ImageDrawEntity image, String text, Font font, Color color,
-			int x, int y, TextHorizontalPosition horizontalPositioning, TextVerticalPosition verticalPositioning) {
+			Point startingPoint, TextHorizontalPosition horizontalPositioning, TextVerticalPosition verticalPositioning) {
 		Graphics2D graphics = image.getImage().createGraphics();
 		Rectangle textBounds = graphics.getFontMetrics(font).getStringBounds(text, graphics).getBounds();
-		int finalX = calculateFinalXPosition(x, horizontalPositioning, textBounds);
-		int finalY = calculateFinalYPosition(y, verticalPositioning, textBounds);
+		int finalX = calculateFinalXPosition(startingPoint.x, horizontalPositioning, textBounds);
+		int finalY = calculateFinalYPosition(startingPoint.y, verticalPositioning, textBounds);
 		graphics.setColor(color);
 		graphics.setFont(font);
 		graphics.drawString(text, finalX, finalY);
