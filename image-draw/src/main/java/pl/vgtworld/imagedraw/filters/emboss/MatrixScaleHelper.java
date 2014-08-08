@@ -11,6 +11,7 @@ public class MatrixScaleHelper {
 				scaledMatrix[i][j] = matrix[i][j] * strength;
 			}
 		}
+		scaledMatrix[matrix.length / 2][matrix.length / 2] = 1;
 		return scaledMatrix;
 	}
 	
