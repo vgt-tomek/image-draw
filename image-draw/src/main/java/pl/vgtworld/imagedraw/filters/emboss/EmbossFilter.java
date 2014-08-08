@@ -18,22 +18,22 @@ public class EmbossFilter implements ImageDrawFilter {
 	static {
 		matrices.put(EmbossDirection.LOWER_RIGHT, new float[][] {
 				{ -2, -1, 0 },
-				{ -1, 0, 1 },
+				{ -1, 1, 1 },
 				{ 0, 1, 2 }
 		});
 		matrices.put(EmbossDirection.LOWER_LEFT, new float[][] {
 				{ 0, -1, -2 },
-				{ 1, 0, -1 },
+				{ 1, 1, -1 },
 				{ 2, 1, 0 }
 		});
 		matrices.put(EmbossDirection.UPPER_LEFT, new float[][] {
 				{ 2, 1, 0 },
-				{ 1, 0, -1 },
+				{ 1, 1, -1 },
 				{ 0, -1, -2 }
 		});
 		matrices.put(EmbossDirection.UPPER_RIGHT, new float[][] {
 				{ 0, 1, 2 },
-				{ -1, 0, 1 },
+				{ -1, 1, 1 },
 				{ -2, -1, 0 }
 		});
 	}
