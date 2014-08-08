@@ -9,9 +9,13 @@ import pl.vgtworld.imagedraw.filters.matrix.MatrixFilter;
 
 public class EmbossFilter implements ImageDrawFilter {
 	
+	private static final int MATRICES_SIZE = 3;
+	
 	private static final Map<EmbossDirection, float[][]> matrices = new HashMap<>();
 	
 	private EmbossDirection direction;
+	
+	private float strength;
 	
 	static {
 		matrices.put(EmbossDirection.LOWER_RIGHT, new float[][] {
@@ -40,13 +44,30 @@ public class EmbossFilter implements ImageDrawFilter {
 		this.direction = direction;
 	}
 	
+	public EmbossFilter(EmbossDirection direction, float strength) {
+		this.direction = direction;
+		this.strength = strength;
+	}
+	
 	@Override
 	public void doFilter(ImageDrawEntity image, int x, int y, int width, int height) {
 		if (direction == null) {
 			throw new IllegalStateException("Direction is not defined.");
 		}
-		MatrixFilter filter = new MatrixFilter(matrices.get(direction));
+		float[][] matrix = matrices.get(direction);
+		matrix = scaleMatrix(matrix);
+		MatrixFilter filter = new MatrixFilter(matrix);
 		filter.doFilter(image, x, y, width, height);
 	}
 	
+	private float[][] scaleMatrix(float[][] matrix) {
+		float[][] scaledMatrix = new float[MATRICES_SIZE][MATRICES_SIZE];
+		for (int i = 0; i < MATRICES_SIZE; ++i) {
+			for (int j = 0; j < MATRICES_SIZE; ++j) {
+				scaledMatrix[i][j] = matrix[i][j] * strength;
+			}
+		}
+		scaledMatrix[MATRICES_SIZE / 2][MATRICES_SIZE / 2] = 1;
+		return scaledMatrix;
+	}
 }
