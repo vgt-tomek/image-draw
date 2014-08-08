@@ -7,6 +7,9 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 import pl.vgtworld.imagedraw.filters.matrix.MatrixFilter;
 
+/**
+ * Filter applying emboss effect to image.
+ */
 public class EmbossFilter implements ImageDrawFilter {
 	
 	private static final Map<EmbossDirection, float[][]> matrices = new HashMap<>();
@@ -37,11 +40,22 @@ public class EmbossFilter implements ImageDrawFilter {
 				{ -2, -1, 0 }
 		});
 	}
-	
+
+	/**
+	 * Creates filter with custom configuration.
+	 * 
+	 * @param direction Effect direction.
+	 */
 	public EmbossFilter(EmbossDirection direction) {
 		this.direction = direction;
 	}
 	
+	/**
+	 * Creates filter with custom configuration.
+	 * 
+	 * @param direction Effect direction.
+	 * @param strength Effect strength.
+	 */
 	public EmbossFilter(EmbossDirection direction, float strength) {
 		this.direction = direction;
 		this.strength = strength;
