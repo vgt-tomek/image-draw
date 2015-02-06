@@ -203,9 +203,11 @@ public class ImageProcessing {
 	 * 
 	 * <p>
 	 * Rotation parameter allows to choose one of three rotation types:
+	 * <ul>
 	 * <li>90 degrees clockwise
 	 * <li>90 degrees counterclockwise
 	 * <li>180 degrees
+	 * </ul>
 	 * 
 	 * @param rotation Rotation type.
 	 */
