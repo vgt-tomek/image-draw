@@ -25,15 +25,17 @@ class ImageTextActions {
 	private int calculateFinalXPosition(int x, TextHorizontalPosition horizontalPositioning, Rectangle textBounds) {
 		int finalX = 0;
 		switch (horizontalPositioning) {
-		case LEFT:
-			finalX = x;
-			break;
-		case CENTER:
-			finalX = x - (textBounds.width / 2);
-			break;
-		case RIGHT:
-			finalX = x - textBounds.width;
-			break;
+			case LEFT:
+				finalX = x;
+				break;
+			case CENTER:
+				finalX = x - (textBounds.width / 2);
+				break;
+			case RIGHT:
+				finalX = x - textBounds.width;
+				break;
+			default:
+				throw new UnsupportedOperationException("Horizontal position not supported.");
 		}
 		return finalX;
 	}
@@ -41,18 +43,20 @@ class ImageTextActions {
 	private int calculateFinalYPosition(int y, TextVerticalPosition verticalPositioning, Rectangle textBounds) {
 		int finalY = 0;
 		switch (verticalPositioning) {
-		case TOP:
-			finalY = y - textBounds.y;
-			break;
-		case MIDDLE:
-			finalY = y - textBounds.y - textBounds.height / 2;
-			break;
-		case BASELINE:
-			finalY = y;
-			break;
-		case BOTTOM:
-			finalY = y - (textBounds.y + textBounds.height);
-			break;
+			case TOP:
+				finalY = y - textBounds.y;
+				break;
+			case MIDDLE:
+				finalY = y - textBounds.y - textBounds.height / 2;
+				break;
+			case BASELINE:
+				finalY = y;
+				break;
+			case BOTTOM:
+				finalY = y - (textBounds.y + textBounds.height);
+				break;
+			default:
+				throw new UnsupportedOperationException("Vertical position not supported.");
 		}
 		return finalY;
 	}

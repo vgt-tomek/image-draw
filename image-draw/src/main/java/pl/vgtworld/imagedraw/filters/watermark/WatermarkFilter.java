@@ -159,14 +159,15 @@ public abstract class WatermarkFilter implements ImageDrawFilter {
 		public WatermarkFilter build() {
 			validateCommonData();
 			switch (type) {
-			case SINGLE:
-				validateSingleVersion();
-				return new WatermarkFilterSingle(watermark, location, margin);
-			case REPEATED:
-				validateRepeatedVersion();
-				return new WatermarkFilterRepeated(watermark, xOffset, yOffset, horizontalSpacing, verticalSpacing);
+				case SINGLE:
+					validateSingleVersion();
+					return new WatermarkFilterSingle(watermark, location, margin);
+				case REPEATED:
+					validateRepeatedVersion();
+					return new WatermarkFilterRepeated(watermark, xOffset, yOffset, horizontalSpacing, verticalSpacing);
+				default:
+					throw new UnsupportedOperationException("Missing implementation for defined type.");
 			}
-			throw new UnsupportedOperationException("Missing implementation for defined type.");
 		}
 		
 		private void validateCommonData() {

@@ -12,32 +12,32 @@ import pl.vgtworld.imagedraw.filters.matrix.MatrixFilter;
  */
 public class EmbossFilter implements ImageDrawFilter {
 	
-	private static final Map<EmbossDirection, float[][]> matrices = new HashMap<>();
+	private static final Map<EmbossDirection, float[][]> MATRICES = new HashMap<>();
 	
 	private EmbossDirection direction;
 	
 	private float strength;
 	
 	static {
-		matrices.put(EmbossDirection.LOWER_RIGHT, new float[][] {
-				{ -2, -1, 0 },
-				{ -1, 1, 1 },
-				{ 0, 1, 2 }
+		MATRICES.put(EmbossDirection.LOWER_RIGHT, new float[][]{
+				{-2, -1, 0},
+				{-1, 1, 1},
+				{0, 1, 2}
 		});
-		matrices.put(EmbossDirection.LOWER_LEFT, new float[][] {
-				{ 0, -1, -2 },
-				{ 1, 1, -1 },
-				{ 2, 1, 0 }
+		MATRICES.put(EmbossDirection.LOWER_LEFT, new float[][]{
+				{0, -1, -2},
+				{1, 1, -1},
+				{2, 1, 0}
 		});
-		matrices.put(EmbossDirection.UPPER_LEFT, new float[][] {
-				{ 2, 1, 0 },
-				{ 1, 1, -1 },
-				{ 0, -1, -2 }
+		MATRICES.put(EmbossDirection.UPPER_LEFT, new float[][]{
+				{2, 1, 0},
+				{1, 1, -1},
+				{0, -1, -2}
 		});
-		matrices.put(EmbossDirection.UPPER_RIGHT, new float[][] {
-				{ 0, 1, 2 },
-				{ -1, 1, 1 },
-				{ -2, -1, 0 }
+		MATRICES.put(EmbossDirection.UPPER_RIGHT, new float[][]{
+				{0, 1, 2},
+				{-1, 1, 1},
+				{-2, -1, 0}
 		});
 	}
 
@@ -66,7 +66,7 @@ public class EmbossFilter implements ImageDrawFilter {
 		if (direction == null) {
 			throw new IllegalStateException("Direction is not defined.");
 		}
-		float[][] matrix = matrices.get(direction);
+		float[][] matrix = MATRICES.get(direction);
 		if (strength != 1) {
 			MatrixScaleHelper scaleHelper = new MatrixScaleHelper();
 			matrix = scaleHelper.scaleMatrix(matrix, strength);
