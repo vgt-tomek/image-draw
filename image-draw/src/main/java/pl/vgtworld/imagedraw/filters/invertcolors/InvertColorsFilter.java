@@ -17,13 +17,8 @@ public class InvertColorsFilter implements ImageDrawFilter {
 	@Override
 	public void doFilter(ImageDrawEntity image, int x, int y, int width, int height) {
 		BufferedImage sourceImage = image.getImage();
-		BufferedImage invertedImage = new BufferedImage(
-				sourceImage.getWidth(),
-				sourceImage.getHeight(),
-				sourceImage.getType()
-				);
 		RescaleOp op = new RescaleOp(-1f, MAX_COLOR_CHANNEL_VALUE, null);
-		invertedImage = op.filter(sourceImage, null);
+		BufferedImage invertedImage = op.filter(sourceImage, null);
 		
 		Graphics2D graphics = sourceImage.createGraphics();
 		graphics.drawImage(invertedImage, x, y, x + width, y + height, x, y, x + width, y + height, null);

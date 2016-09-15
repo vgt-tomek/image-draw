@@ -50,5 +50,18 @@ public class ImageProcessingTest {
 		
 		assertThat(imageProcessing.getImage().getImageType()).isEqualTo(ImageType.JPEG);
 	}
-	
+
+	@Test
+	public void shouldRotateImage() throws IOException {
+		String path = getClass().getResource("/image-grid-300-100.png").getPath();
+		ImageProcessing imageProcessing = new ImageProcessing();
+		imageProcessing.open(path);
+
+		imageProcessing.rotate(Rotation.QUARTER_CLOCKWISE);
+		ImageDrawEntity entity = imageProcessing.getImage();
+
+		assertThat(entity.getImage().getWidth()).isEqualTo(100);
+		assertThat(entity.getImage().getHeight()).isEqualTo(300);
+	}
+
 }

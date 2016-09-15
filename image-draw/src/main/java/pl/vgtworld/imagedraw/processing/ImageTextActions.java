@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 
 class ImageTextActions {
-	
+
 	void drawText(ImageDrawEntity image, String text, Font font, Color color,
 			Point startingPoint, TextHorizontalPosition horizontalPositioning, TextVerticalPosition verticalPositioning) {
 		Graphics2D graphics = image.getImage().createGraphics();
@@ -21,44 +21,33 @@ class ImageTextActions {
 		graphics.drawString(text, finalX, finalY);
 		graphics.dispose();
 	}
-	
+
 	private int calculateFinalXPosition(int x, TextHorizontalPosition horizontalPositioning, Rectangle textBounds) {
-		int finalX = 0;
 		switch (horizontalPositioning) {
 			case LEFT:
-				finalX = x;
-				break;
+				return x;
 			case CENTER:
-				finalX = x - (textBounds.width / 2);
-				break;
+				return x - (textBounds.width / 2);
 			case RIGHT:
-				finalX = x - textBounds.width;
-				break;
+				return x - textBounds.width;
 			default:
-				throw new UnsupportedOperationException("Horizontal position not supported.");
+				throw new UnsupportedOperationException("Unknown horizontal positioning value.");
 		}
-		return finalX;
 	}
-	
+
 	private int calculateFinalYPosition(int y, TextVerticalPosition verticalPositioning, Rectangle textBounds) {
-		int finalY = 0;
 		switch (verticalPositioning) {
 			case TOP:
-				finalY = y - textBounds.y;
-				break;
+				return y - textBounds.y;
 			case MIDDLE:
-				finalY = y - textBounds.y - textBounds.height / 2;
-				break;
+				return y - textBounds.y - textBounds.height / 2;
 			case BASELINE:
-				finalY = y;
-				break;
+				return y;
 			case BOTTOM:
-				finalY = y - (textBounds.y + textBounds.height);
-				break;
+				return y - (textBounds.y + textBounds.height);
 			default:
-				throw new UnsupportedOperationException("Vertical position not supported.");
+				throw new UnsupportedOperationException("Unknown vertical positioning value.");
 		}
-		return finalY;
 	}
-	
+
 }

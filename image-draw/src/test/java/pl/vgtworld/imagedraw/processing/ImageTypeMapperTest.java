@@ -64,5 +64,15 @@ public class ImageTypeMapperTest {
 		
 		assertThat(extension).isEqualTo("png");
 	}
-	
+
+	@Test
+	public void shouldReturnNullWhenFilenameDoesNotContainsExtension() {
+		String path = "/home/user/filename";
+		ImageTypeMapper mapper = new ImageTypeMapper();
+
+		ImageType imageType = mapper.mapFromExtension(path);
+
+		assertThat(imageType).isNull();
+	}
+
 }

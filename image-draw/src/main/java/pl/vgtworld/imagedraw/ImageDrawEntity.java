@@ -15,6 +15,7 @@ public class ImageDrawEntity {
 	 * Default constructor creating empty object.
 	 */
 	public ImageDrawEntity() {
+		// Default constructor creating empty object.
 	}
 	
 	/**
