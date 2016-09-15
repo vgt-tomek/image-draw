@@ -5,5 +5,5 @@ package pl.vgtworld.imagedraw.filters.watermark;
  * {@link pl.vgtworld.imagedraw.filters.watermark.WatermarkFilter.Builder watermark builder}.
  */
 public enum WatermarkLocation {
-	UPPER_LEFT, UPPER_RIGHT, LOWER_LEFT, LOWER_RIGHT, CENTER;
+	UPPER_LEFT, UPPER_RIGHT, LOWER_LEFT, LOWER_RIGHT, CENTER
 }

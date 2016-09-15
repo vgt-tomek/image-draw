@@ -34,7 +34,7 @@ class WatermarkFilterSingle extends WatermarkFilter {
 	}
 	
 	private int calculateWatermarkXPosition(int filterX, int imageWidth, int watermarkWidth) {
-		int watermarkX = 0;
+		int watermarkX;
 		if (location == WatermarkLocation.UPPER_LEFT || location == WatermarkLocation.LOWER_LEFT) {
 			watermarkX = filterX + margin;
 		} else if (location == WatermarkLocation.UPPER_RIGHT || location == WatermarkLocation.LOWER_RIGHT) {
@@ -46,7 +46,7 @@ class WatermarkFilterSingle extends WatermarkFilter {
 	}
 	
 	private int calculateWatermarkYPosition(int filterY, int imageHeight, int watermarkHeight) {
-		int watermarkY = 0;
+		int watermarkY;
 		if (location == WatermarkLocation.UPPER_LEFT || location == WatermarkLocation.UPPER_RIGHT) {
 			watermarkY = filterY + margin;
 		} else if (location == WatermarkLocation.LOWER_LEFT || location == WatermarkLocation.LOWER_RIGHT) {

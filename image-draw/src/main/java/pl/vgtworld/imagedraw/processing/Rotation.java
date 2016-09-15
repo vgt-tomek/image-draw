@@ -10,12 +10,12 @@ public enum Rotation {
 	
 	private int degrees;
 
-	private Rotation(int degrees) {
+	Rotation(int degrees) {
 		this.degrees = degrees;
 	}
 
 	int getDegrees() {
 		return degrees;
 	}
-	
+
 }

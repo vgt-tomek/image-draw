@@ -12,8 +12,9 @@ import pl.vgtworld.imagedraw.ImageType;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 
 /**
- * Main image processing class used for laoding, processing and saving images.
+ * Main image processing class used for loading, processing and saving images.
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ImageProcessing {
 	
 	private ImageDrawEntity image;
@@ -163,7 +164,7 @@ public class ImageProcessing {
 	}
 	
 	/**
-	 * Resizes image to specified width and height.
+	 * Resize image to specified width and height.
 	 * 
 	 * <p>
 	 * Both width and height cannot be equal or lower that zero.
@@ -189,7 +190,7 @@ public class ImageProcessing {
 	/**
 	 * Cropping an area from image defined by specified rectangular region.
 	 * 
-	 * @param x X ccordinate of the upper-left corner of the specified region.
+	 * @param x X coordinate of the upper-left corner of the specified region.
 	 * @param y Y coordinate of the upper-left corner of the specified region.
 	 * @param width Width of the specified region.
 	 * @param height Height of the specified region.
@@ -295,7 +296,7 @@ public class ImageProcessing {
 	 * If image is smaller, than defined width and height, it will be scaled up to fit defined size.
 	 * 
 	 * <p>
-	 * Sacled thumbnail have the same image aspect ratio as original image, therefore if original image has
+	 * Scaled thumbnail have the same image aspect ratio as original image, therefore if original image has
 	 * different aspect ratio, then top/bottom or left/right edges (depending on aspect ratio difference)
 	 * will be cut off in order for generated image to have exact defined width and height.
 	 * If it is important to have whole image on thumbnail, use
@@ -325,7 +326,7 @@ public class ImageProcessing {
 	 * 
 	 * <p>
 	 * By default font is left-aligned horizontally (starting at x position)
-	 * and baseline-alligned vertically (starting at y position).
+	 * and baseline-aligned vertically (starting at y position).
 	 * 
 	 * <p>
 	 * To control text alignment use overloaded method {@link #drawText(String, Color, Font, int, int, TextHorizontalPosition, TextVerticalPosition) drawText}.
@@ -365,11 +366,8 @@ public class ImageProcessing {
 	/**
 	 * Applies filter to currently processed image.
 	 * 
-	 * <p>
-	 * IllegalStateException is throwed, when there is no image currently processed.
-	 * 
 	 * @param filter Filter to use on image.
-	 * @throws IllegalStateException
+	 * @throws IllegalStateException IllegalStateException is thrown, when there is no image currently processed.
 	 */
 	public void applyFilter(ImageDrawFilter filter) {
 		applyFilter(filter, 0, 0, image.getImage().getWidth(), image.getImage().getHeight());
@@ -378,19 +376,13 @@ public class ImageProcessing {
 	/**
 	 * Applies filter to defined area of currently processed image.
 	 * 
-	 * <p>
-	 * IllegalStateException is throwed, when there is no image currently processed.
-	 * 
-	 * <p>
-	 * IllegalArgumentException is throwed, when defined area is even partially outside of processed image.
-	 * 
 	 * @param filter Filter to use on image.
-	 * @param x X ccordinate of the upper-left corner of the specified region.
-	 * @param y Y ccordinate of the upper-left corner of the specified region.
+	 * @param x X coordinate of the upper-left corner of the specified region.
+	 * @param y Y coordinate of the upper-left corner of the specified region.
 	 * @param width Width of the specified region.
 	 * @param height Height of the specified region.
-	 * @throws IllegalArgumentException
-	 * @throws IllegalStateException
+	 * @throws IllegalArgumentException IllegalArgumentException is thrown, when defined area is even partially outside of processed image.
+	 * @throws IllegalStateException IllegalStateException is thrown, when there is no image currently processed.
 	 */
 	public void applyFilter(ImageDrawFilter filter, int x, int y, int width, int height) {
 		filterValidationHelper.validateParameters(image, x, y, width, height);
