@@ -6,15 +6,13 @@ import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 /**
  * Filter applying watermark on image.
  */
-public abstract class WatermarkFilter implements ImageDrawFilter {
-	
-	protected WatermarkFilter() {
-	}
-	
+@SuppressWarnings("WeakerAccess")
+public interface WatermarkFilter extends ImageDrawFilter {
+
 	/**
 	 * Builder class used for creating watermark filter with custom configuration.
 	 */
-	public static class Builder {
+	class Builder {
 		
 		private WatermarkFilterType type;
 		

@@ -1,18 +1,19 @@
 package pl.vgtworld.imagedraw.filters.emboss;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 import pl.vgtworld.imagedraw.filters.ImageDrawFilter;
 import pl.vgtworld.imagedraw.filters.matrix.MatrixFilter;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 /**
  * Filter applying emboss effect to image.
  */
+@SuppressWarnings("WeakerAccess")
 public class EmbossFilter implements ImageDrawFilter {
 	
-	private static final Map<EmbossDirection, float[][]> MATRICES = new HashMap<>();
+	private static final Map<EmbossDirection, float[][]> MATRICES = new EnumMap<>(EmbossDirection.class);
 	
 	private EmbossDirection direction;
 	
@@ -67,10 +68,8 @@ public class EmbossFilter implements ImageDrawFilter {
 			throw new IllegalStateException("Direction is not defined.");
 		}
 		float[][] matrix = MATRICES.get(direction);
-		if (strength != 1) {
-			MatrixScaleHelper scaleHelper = new MatrixScaleHelper();
-			matrix = scaleHelper.scaleMatrix(matrix, strength);
-		}
+		MatrixScaleHelper scaleHelper = new MatrixScaleHelper();
+		matrix = scaleHelper.scaleMatrix(matrix, strength);
 		MatrixFilter filter = new MatrixFilter(matrix);
 		filter.doFilter(image, x, y, width, height);
 	}

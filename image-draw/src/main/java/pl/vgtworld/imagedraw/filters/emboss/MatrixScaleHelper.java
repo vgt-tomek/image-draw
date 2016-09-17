@@ -1,7 +1,7 @@
 package pl.vgtworld.imagedraw.filters.emboss;
 
-public class MatrixScaleHelper {
-	
+class MatrixScaleHelper {
+
 	float[][] scaleMatrix(float[][] matrix, float strength) {
 		
 		float[][] scaledMatrix = new float[matrix.length][];
@@ -14,5 +14,5 @@ public class MatrixScaleHelper {
 		scaledMatrix[matrix.length / 2][matrix.length / 2] = 1;
 		return scaledMatrix;
 	}
-	
+
 }

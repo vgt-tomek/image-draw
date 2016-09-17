@@ -18,6 +18,7 @@ public class SharpenFilter implements ImageDrawFilter {
 	 * Sharpening strength is set to 1.
 	 */
 	public SharpenFilter() {
+		// Creates default filter with strength 1.
 	}
 	
 	/**

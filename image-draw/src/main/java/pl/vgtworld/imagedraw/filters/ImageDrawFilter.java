@@ -6,6 +6,7 @@ import pl.vgtworld.imagedraw.ImageDrawEntity;
  * Interface for filters used in
  * {@link pl.vgtworld.imagedraw.processing.ImageProcessing#applyFilter(ImageDrawFilter) ImageProcessing.applyFilter(filter)} method.
  */
+@FunctionalInterface
 public interface ImageDrawFilter {
 	
 	/**

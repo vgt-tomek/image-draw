@@ -31,6 +31,8 @@ public class WatermarkFilterTest {
 		WatermarkFilter filter = new WatermarkFilter.Builder()
 				.setType(WatermarkFilterType.REPEATED)
 				.setWatermark(loadWatermark())
+				.setXOffset(10)
+				.setYOffset(10)
 				.build();
 		
 		assertThat(filter).isNotNull();

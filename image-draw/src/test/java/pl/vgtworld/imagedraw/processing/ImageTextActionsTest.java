@@ -57,6 +57,21 @@ public class ImageTextActionsTest {
 		);
 	}
 
+	@Test
+	public void shouldSuccessfullyDrawBaselinePositionedTextOnImage() throws IOException {
+		ImageTextActions textActions = new ImageTextActions();
+
+		textActions.drawText(
+				createImageEntity(),
+				"Lorem ipsum",
+				new Font("SansSerif", Font.BOLD, 64),
+				Color.BLACK,
+				new Point(50, 50),
+				TextHorizontalPosition.CENTER,
+				TextVerticalPosition.BASELINE
+		);
+	}
+
 	private ImageDrawEntity createImageEntity() throws IOException {
 		BufferedImage image = ImageIO.read(new File(getClass().getResource("/image-100-100.jpg").getPath()));
 		return new ImageDrawEntity(image, ImageType.JPEG);

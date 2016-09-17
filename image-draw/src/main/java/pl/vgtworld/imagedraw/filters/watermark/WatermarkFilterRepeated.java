@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import pl.vgtworld.imagedraw.ImageDrawEntity;
 
-class WatermarkFilterRepeated extends WatermarkFilter {
+class WatermarkFilterRepeated implements WatermarkFilter {
 	
 	private ImageDrawEntity watermark;
 	
