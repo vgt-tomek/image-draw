@@ -8,6 +8,7 @@ import pl.vgtworld.imagedraw.filters.matrix.MatrixFilter;
 /**
  * Filter applying gaussian blur to image.
  */
+@SuppressWarnings("WeakerAccess")
 public class GaussianBlurFilter implements ImageDrawFilter {
 	
 	private MatrixGenerator matrixGenerator = new MatrixGenerator();

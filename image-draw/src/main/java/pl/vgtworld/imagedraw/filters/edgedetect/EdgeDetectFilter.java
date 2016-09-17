@@ -7,6 +7,7 @@ import pl.vgtworld.imagedraw.filters.matrix.MatrixFilter;
 /**
  * Filter applying edge detection to image.
  */
+@SuppressWarnings("WeakerAccess")
 public class EdgeDetectFilter implements ImageDrawFilter {
 	
 	private static final int DEFAULT_STRENGTH = 1;
